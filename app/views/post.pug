@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  .post-container
+    .post
+      h3  #{title}
+      h6.author-details MUSHTAQ AHMAD GURMANI SCHOOL OF HUMANITIES AND SOCIAL SCIENCES
+      h6.date #{date}
+      img(src=img, alt="")
+
+      .post-detail
+        p #{excerpt}
+        p #{excerpt}
+        p #{excerpt}
+        p #{excerpt}
+        p #{excerpt}
+        p #{excerpt}
+    .post-comments
+      h4 Respones
+      input(type="text" placeholder="Comment" class="comment-input")
+      input(type="button" value="Post comment" class="post-comment-button")
+      .post-comment #{excerpt}
+        p #{date}
+
+      .post-comment #{excerpt}
+        p #{date}
+      
+      .post-comment #{excerpt}
+        p #{date}

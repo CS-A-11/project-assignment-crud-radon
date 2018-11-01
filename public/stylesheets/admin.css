@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body {
+  height: 100%;
+}
+
+.header-container {
+  width: 100%;
+  padding: 15px;
+  background-color: grey;
+  overflow:hidden;
+  position: fixed;
+}
+
+.header-container h4 {
+  float: left;
+  display: block;
+  color: whitesmoke;
+  
+}
+
+.header-container a {
+  float: right;
+  display: block;
+  color: whitesmoke;
+}
+
+.content-container {
+  overflow: hidden;
+}
+
+.side-bar {
+  width: 250px;
+  height: 100%;
+  background-color: black;
+  position: fixed;
+  float: left;
+  margin-top: 67px;
+}
+
+.side-bar ul {
+  display: block;
+  padding-top: 15px
+}
+
+.side-bar ul li {
+  padding: 15px;
+}
+
+.side-bar ul li a {
+  display: block;
+  text-decoration: none;
+  color: whitesmoke
+}
+
+.page-content {
+  float: left;
+  width: 100%;
+  margin-left: 270px;
+  margin-top: 85px;
+}
+
+.page-content {
+  width: 75%;
+}
+
+#postContent {
+  width: 90%;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.page-content input[type=file] {
+  border: 1px solid gray;
+  color: gray;
+  background-color: whitesmoke;
+  padding: 5px 3px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin: 10px 0;
+}

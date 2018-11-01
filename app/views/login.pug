@@ -1,0 +1,38 @@
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title= title
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/userpage.css')
+  body
+    block content
+      .page-container
+        .side-bar1
+          .heading
+            h2 Welcome to Radon
+          .content
+            ul
+              li
+                h4 See top researches
+              li
+                h4 Start discussions with other members
+              li
+                h4 Give suggestion about researches
+        .side-bar2
+          .container
+            .logo-container
+              .logo 
+                h6 Radon
+            form(method='POST' action='/user/acount_signin' class='form')
+              div.form-group
+                //- label(for='name') Name:
+                input#name.form-control(type='text' placeholder='Username' name='name' require)
+              div.form-group
+                //- label(for='pw') Password:
+                input#pw.form-control(type='password' name='password' placeholder='Password' require)
+              .row
+                button.btn.btn-primary(type='submit') Sign in
+                span or
+                a(href="/user/signup") Sign up
+    script(src='/bootstrap/js/bootstrap.min.js')

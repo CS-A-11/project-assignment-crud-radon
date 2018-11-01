@@ -1,0 +1,82 @@
+* {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  font: 14px Arial;
+}
+.navigation {
+  width: 100%;
+  height: 50px;
+  background-color: rgb(218, 153, 153);
+}
+.navigation a {
+  text-decoration: none;
+  color: whitesmoke;
+  float: right;
+  margin: 5px;
+  background-color: rgb(236, 130, 130);
+  padding: 3px;
+}
+.banner {
+  padding: 25px;
+  width: 100%;
+  background-color: gray;
+  color: whitesmoke
+}
+.research-post-card {
+  width: 27%;
+  float: left;
+  margin: 25px; 
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+}
+.research-post-card img {
+  width: 100%;
+  height: 30%;
+}
+.post-content {
+  margin: 20px 20px;
+  padding-bottom: 20px
+}
+a.post-title:hover {
+  text-decoration: none;
+}
+.post-container {
+  width: 60%;
+  margin: 55px auto;
+}
+.post {
+  padding-bottom: 30px;
+  border-bottom: 0.5px solid rgba(0,0,0,.54)
+}
+.author-details, .date {
+  color: rgba(0,0,0,.54)!important;
+}
+.post-container img {
+  margin: 20px auto;
+  width: 100%;
+  height: auto;
+}
+.post-comments {
+  padding: 50px;
+  width: 100%;
+}
+.comment-input {
+  width: 100%;
+  margin: 30px 0;
+}
+.post-comment-button {
+  background-color: gray;
+  border: none;
+  padding: 15px;
+  color: whitesmoke;
+  position: relative;
+}
+.post-comment {
+  padding: 30px;
+  margin-top: 30px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+}
+.post-comment p {
+  margin-top: 10px;
+  color: rgba(0,0,0,.54)
+}

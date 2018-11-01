@@ -1,0 +1,46 @@
+{
+  "name": "radon",
+  "version": "1.0.0",
+  "description": "Website link\r https://immense-bastion-31679.herokuapp.com/",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "10.4.0",
+    "npm": "6.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CS-A-11/projectassignment1-radon.git"
+  },
+  "author": "Team 7",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CS-A-11/projectassignment1-radon/issues"
+  },
+  "homepage": "https://github.com/CS-A-11/projectassignment1-radon#readme",
+  "dependencies": {
+    "@angular/animations": "^7.0.0",
+    "@angular/common": "^7.0.0",
+    "@angular/compiler": "^7.0.0",
+    "@angular/compiler-cli": "^7.0.0",
+    "@angular/core": "^7.0.0",
+    "@angular/forms": "^7.0.0",
+    "@angular/http": "^7.0.0",
+    "@angular/platform-browser": "^7.0.0",
+    "@angular/platform-browser-dynamic": "^7.0.0",
+    "@angular/platform-server": "^7.0.0",
+    "@angular/router": "^7.0.0",
+    "angular": "^1.7.5",
+    "cookie-parser": "^1.4.3",
+    "debug": "^4.0.1",
+    "express": "^4.16.3",
+    "mongoose": "^5.3.3",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.1",
+    "nodemon": "^1.18.4",
+    "pug": "^2.0.3",
+    "request": "^2.88.0"
+  }
+}

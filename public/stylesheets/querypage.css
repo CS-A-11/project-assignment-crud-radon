@@ -1,0 +1,61 @@
+* {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  font: 14px Arial;
+}
+.banner {
+  padding: 25px;
+  width: 100%;
+  background-color: rgb(218, 153, 153);
+  color: whitesmoke;
+  margin-bottom: 30px;
+}
+.query {
+  width: 65%;
+  margin: 30px;
+  height: auto;
+}
+
+.user-details {
+  float: left;
+  width: 16%;
+}
+.user-details img {
+  width: 100px; height: 100px;
+}
+.query-details {
+  width: 75%;
+  float: left;
+}
+.query-details a {
+  text-decoration: none;
+  color: black
+}
+.tags span {
+  background-color: gray;
+  color: whitesmoke;
+  padding: 0 5px;
+  margin: 0 5px;
+  float: left;
+}
+.query-date {
+  float: right;
+  margin-bottom: 30px;
+}
+.separator {
+  width: 65%;
+  margin: 0px 30px 30px 30px;
+  border-bottom: 0.5px solid rgba(0,0,0,.54);
+  clear: both;
+}
+.discussion-responses {
+  margin: 0px 30px 30px 30px;
+}
+.comment-details {
+  margin: 30px;
+  width: 60%;
+  padding: 30px;
+  display: block;
+  clear: both;
+}

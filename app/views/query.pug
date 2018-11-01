@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title= title
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/querypage.css')
+        
+
+  body
+    block content
+      .banner
+        h1 Radon Discussion forum 
+        p Welcome to Radon Discussion forum
+      .query
+        .user-details
+          img(src=user.img, alt="")
+          h6= user.userName
+        .query-details
+          a(href="/queries/" + queryTopic)
+            h1= queryTopic
+          p= queryDetails
+          
+          .tags
+            each tag in tags
+              span= tag.name
+          .query-date= date 
+      .separator
+      .discussion-responses Responses
+        each comment in comments
+          .comment-details
+            .user-details
+              img(src=comment.user.img, alt="")
+              h6= comment.user.userName
+            .query-details
+              p= comment.comment
+              .query-date= date
