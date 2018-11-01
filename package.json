@@ -1,7 +1,7 @@
 {
   "name": "radon",
   "version": "1.0.0",
-  "description": "Website link\r https://immense-bastion-31679.herokuapp.com/",
+  "description": "project-assignment-crud-radon created by GitHub Classroom",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -10,16 +10,6 @@
     "node": "10.4.0",
     "npm": "6.1.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CS-A-11/projectassignment1-radon.git"
-  },
-  "author": "Team 7",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/CS-A-11/projectassignment1-radon/issues"
-  },
-  "homepage": "https://github.com/CS-A-11/projectassignment1-radon#readme",
   "dependencies": {
     "@angular/animations": "^7.0.0",
     "@angular/common": "^7.0.0",
@@ -42,5 +32,16 @@
     "nodemon": "^1.18.4",
     "pug": "^2.0.3",
     "request": "^2.88.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CS-A-11/project-assignment-crud-radon.git"
+  },
+  "author": "team 7",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CS-A-11/project-assignment-crud-radon/issues"
+  },
+  "homepage": "https://github.com/CS-A-11/project-assignment-crud-radon#readme"
 }
