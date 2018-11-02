@@ -20,7 +20,25 @@ html(lang="en")
           li
             a(href='#') View posts
       .page-content
-        each article in articles
-          h6= article.title
-          p!= article.content
-      
+        .container
+          .table-responsive
+            table.table.table-striped
+              thead
+                tr
+                  th
+                    h4 Title
+                  th
+                    h4 Updated On
+                  th
+                    h4 Actions
+              tbody
+                each article in articles
+                  tr
+                    td
+                      h6= article.title
+                    //- p!= article.content
+                    td
+                      h6= article.createdOn
+                    td 
+                      a.btn.btn-primary(href="/admin/edit_post/" + article._id style="margin-right: 5px") Edit
+                      a.btn.btn-danger(href="#") Delete

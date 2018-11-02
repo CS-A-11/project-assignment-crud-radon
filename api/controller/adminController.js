@@ -4,6 +4,35 @@ var sendPostResponse = function (res, status, content) {
   res.status(status);
   res.json(content);
 };
+module.exports.updatePost = function (req, res) {
+  article.findOneAndUpdate(
+    { _id: req.params.postId }, 
+    { $set: req.body },
+    {
+      upsert: false,
+      multi: false,
+      new: true
+    },
+    function (err, article) {
+      if (err) {
+        sendPostResponse(res, 400, err);
+      } else {
+        sendPostResponse(res, 201, article);
+      }
+    }
+  );
+}
+module.exports.getPostById = function (req, res) {
+  article.findById( req.params.postId, {
+    _id: 1, title: 1, content: 1
+  }, function (err, article) {
+    if (err) {
+      sendPostResponse(res, 400, err);
+    } else {
+      sendPostResponse(res, 201, article)
+    }
+  });
+}
 module.exports.getPosts = function (req, res) {
   article.find({}, {
     title: 1,

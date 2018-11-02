@@ -31,5 +31,8 @@ router.get("/admin", ctrlAdmin.adminlandingPage);
 router.get("/admin/create_article", ctrlAdmin.createPostPage);
 router.post("/admin/add_article", upload.single('articleImage'), ctrlAdmin.addArticle);
 router.get("/admin/view_posts", ctrlAdmin.viewPosts);
+router.get("/admin/edit_post/:post_id", ctrlAdmin.editPostPage);
+
+router.post("/admin/edit_article/:postId", upload.single('articleImage'), ctrlAdmin.editArticle);
 
 module.exports = router;

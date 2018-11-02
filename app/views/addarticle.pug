@@ -19,12 +19,24 @@ html(lang="en")
             a(href='#') Add post
           li
             a(href='#') View posts
+      if postId === undefined
+        - var address = '/admin/add_article'
+        - var buttonText = 'Add Article'
+        - var formMethod = 'POST'
+      else 
+        - var address = '/admin/edit_article/' + article._id
+        - var buttonText = 'Edit Article'
+        - var formMethod = 'POST'
       .page-content
-        form(method='POST' action='/admin/add_article' class='form' enctype="multipart/form-data")
+        if (message !== undefined)
+          .alert.alert-danger
+            string Note!
+            span= message
+        form(method=formMethod action=address class='form' enctype="multipart/form-data")
           input(type='file' name='articleImage')
           div.form-group
-            input#name.form-control(type='text' placeholder='Post Heading' name='heading' required)
-          textarea#postContent(name="post" rows=10 required) 
-          button.btn.btn-primary(type='submit'  style='margin-top: 10px;') Add Article
+            input#name.form-control(type='text' placeholder='Post Heading' name='heading' value=article.title required)
+          textarea#postContent(name="content" rows=10)= article.content
+          button.btn.btn-primary(type='submit' style='margin-top: 10px;')= buttonText
   script.
-    tinymce.init({ selector:'textarea' });
+    tinymce.init({ selector:'textarea', inline_styles : false });
