@@ -54,7 +54,11 @@ body {
 .side-bar ul li a {
   display: block;
   text-decoration: none;
-  color: whitesmoke
+  color: whitesmoke;
+  background-color: rgb(136, 136, 218);
+  border-bottom-color: blue;
+  border-bottom: 3px;
+  
 }
 
 .page-content {

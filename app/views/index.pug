@@ -1,26 +1,53 @@
-extends layout
-block content
-  .navigation
-    a.post-title(href=`/discussions`)
-      h3 Discussions
-  .banner
-    h1= title
-    p Welcome to #{title} research portal
-  - var index = 0;
-  each research in researches
-    .research-post-card
-      img(src=research.img, alt="")
-      .post-content
-        a.post-title(href=`/post/${research.title}`)
-          h2
-            =research.title
-        p.date-text
-          =research.date
-        p.excerpt
-          =research.excerpt
-        input(type='button' id=index value='Read more' name='readMore' onClick=`console.log(${JSON.stringify(research)})`)
-    - index++;
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title= title
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/index.css')
+        
+
+  body
+    header.header-container 
+          h4 Radon
+
+    block content
+
+      
+        
+
+      .navigation
+        a.post-title(href=`/discussions`)
+          h3 Discussions
+    
+
+
+      - var index = 0;  
+      each research in researches
+        .research-post-card
+          img(src=research.img, alt="")
+          .post-content
+            a.post-title(href=`/post/${research.title}`)
+              h2
+                =research.title
+            p.date-text
+              =research.date
+            p.excerpt
+              =research.excerpt
+            input(type='button' id=index value='Read more' name='readMore' onClick=`console.log(${JSON.stringify(research)})`)
+        - index++;
+
+
+
   script.
     function onClickPost(id) { 
       console.log(id);
     }
+    
+
+    script(src='/bootstrap/js/bootstrap.min.js')
+
+  
+
+      
+  

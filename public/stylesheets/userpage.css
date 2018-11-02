@@ -14,7 +14,7 @@ body, html {
   float: left;
   width: 50%;
   height: 100%;
-  background-color: rgb(218, 153, 153);
+  background-color: rgb(12, 11, 11);
 }
 .side-bar1 .heading {
   margin: 20% auto 0 auto;
@@ -41,7 +41,7 @@ body, html {
 .logo-container {
   width: 100px;
   height: 100px;
-  background-color: rgb(218, 153, 153);
+  background-color: rgb(15, 11, 11);
   border-radius: 50px;
   position: relative;
   margin: 0 auto;
