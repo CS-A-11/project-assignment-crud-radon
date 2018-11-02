@@ -1,51 +1,61 @@
 doctype html
-html
+html(lang='en')
   head
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    title Radon
+
     link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
-    link(rel='stylesheet', href='/stylesheets/index.css')
-        
+    link(rel='stylesheet', href='/stylesheets/index.css')  
 
+    
+    
+  
+    
   body
-    header.header-container 
-          h4 Radon
+    // Navigation Bar
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+      .container
+        a.navbar-brand(href='#') Radon
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        #topBar.collapse.navbar-collapse
+          ul.navbar-nav.ml-auto
+            li.nav-item
+              a.nav-link(href='/discussions') Discussions
+    // Navigation Bar ends here
 
-    block content
-
-      
-        
-
-      .navigation
-        a.post-title(href=`/discussions`)
-          h3 Discussions
+    - var index = 0;
+    each research in researches
+      .research-post-card
+        img(src=research.img, alt="")
+        .post-content
+          a.post-title(href=`/post/${research.title}`)
+            h2
+              =research.title
+          p.date-text
+            =research.date
+          p.excerpt
+            =research.excerpt
+          input(type='button' id=index value='Read more' name='readMore' onClick=`console.log(${JSON.stringify(research)})`)
+      - index++;
+    script.
+      function onClickPost(id) { 
+        console.log(id);
+      }
+ 
     
-
-
-      - var index = 0;  
-      each research in researches
-        .research-post-card
-          img(src=research.img, alt="")
-          .post-content
-            a.post-title(href=`/post/${research.title}`)
-              h2
-                =research.title
-            p.date-text
-              =research.date
-            p.excerpt
-              =research.excerpt
-            input(type='button' id=index value='Read more' name='readMore' onClick=`console.log(${JSON.stringify(research)})`)
-        - index++;
-
-
-
-  script.
-    function onClickPost(id) { 
-      console.log(id);
-    }
     
+    // Footer starts here
+    footer.bg-dark.fixed-bottom
+      .container
+        p.text-center.text-white Copyright © Radon 2018
+      // /.container
+      // Bootstrap core JavaScript
+      script(src='vendor/jquery/jquery.min.js')
+      script(src='vendor/bootstrap/js/bootstrap.bundle.min.js')
 
-    script(src='/bootstrap/js/bootstrap.min.js')
+
 
   
 
