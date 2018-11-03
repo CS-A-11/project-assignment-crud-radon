@@ -24,36 +24,125 @@ html(lang='en')
             li.nav-item
               a.nav-link(href='/discussions') Discussions
     // Navigation Bar ends here
+    ////////////////////////////////////////////////////////////////////////////////////////
+    // Page Content
+    .container
+      // Page Heading
+      h1.my-4.text-center.text-info
+        | Research Publications
+
+      .row
+        .col-lg-3.col-md-4.col-sm-6.portfolio-item
+          .card.h-100
+            a(href='#')
+              img.card-img-top(src='http://placehold.it/700x400', alt='')
+            .card-body
+              h4.card-title
+                a(href='#') Project One
+              p.card-text
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!
+              button.btn.btn-outline-secondary(type='button') More
+        
+        .col-lg-3.col-md-4.col-sm-6.portfolio-item
+          .card.h-100
+            a(href='#')
+              img.card-img-top(src='http://placehold.it/700x400', alt='')
+            .card-body
+              h4.card-title
+                a(href='#') Project One
+              p.card-text
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!
+              button.btn.btn-outline-secondary(type='button') More
+
+        .col-lg-3.col-md-4.col-sm-6.portfolio-item
+          .card.h-100
+            a(href='#')
+              img.card-img-top(src='http://placehold.it/700x400', alt='')
+            .card-body
+              h4.card-title
+                a(href='#') Project One
+              p.card-text
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!
+              button.btn.btn-outline-secondary(type='button') More
+        
+        .col-lg-3.col-md-4.col-sm-6.portfolio-item
+          .card.h-100
+            a(href='#')
+              img.card-img-top(src='http://placehold.it/700x400', alt='')
+            .card-body
+              h4.card-title
+                a(href='#') Project One
+              p.card-text
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!
+              button.btn.btn-outline-secondary(type='button') More
+
+
+
+        
+      // /.row
+      // Pagination
+      ul.pagination.justify-content-center
+        li.page-item
+          a.page-link(href='#', aria-label='Previous')
+            span(aria-hidden='true') «
+            span.sr-only Previous
+        li.page-item
+          a.page-link(href='#') 1
+        li.page-item
+          a.page-link(href='#') 2
+        li.page-item
+          a.page-link(href='#') 3
+        li.page-item
+          a.page-link(href='#', aria-label='Next')
+            span(aria-hidden='true') »
+            span.sr-only Next
+    // /.container
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
-    - var index = 0;
-    each research in researches
-      .research-post-card
-        img(src=research.img, alt="")
-        .post-content
-          a.post-title(href=`/post/${research.title}`)
-            h2
-              =research.title
-          p.date-text
-            =research.date
-          p.excerpt
-            =research.excerpt
-          input(type='button' id=index value='Read more' name='readMore' onClick=`console.log(${JSON.stringify(research)})`)
-      - index++;
-    script.
-      function onClickPost(id) { 
-        console.log(id);
-      }
+  
  
     
     
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////   
     // Footer starts here
-    footer.bg-dark.fixed-bottom
+    //- footer.py-5.bg-dark.fixed-bottom
+    //-   .container
+    //-     p.text-center.text-white Copyright © Radon 2018
+    //-   // /.container
+    //-   // Bootstrap core JavaScript
+    //-   script(src='vendor/jquery/jquery.min.js')
+    //-   script(src='vendor/bootstrap/js/bootstrap.bundle.min.js')
+    //-   // Footer
+    footer.py-2.bg-dark
       .container
-        p.text-center.text-white Copyright © Radon 2018
+        p.m-0.text-center.text-white Copyright © Radon 2018
       // /.container
       // Bootstrap core JavaScript
       script(src='vendor/jquery/jquery.min.js')
       script(src='vendor/bootstrap/js/bootstrap.bundle.min.js')
+
 
 
 
