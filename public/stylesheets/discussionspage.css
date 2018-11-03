@@ -1,16 +1,27 @@
-* {
-  text-decoration: none;
-  margin: 0;
-  padding: 0;
-  font: 14px Arial;
+body {
+  padding-top: 54px;
 }
-.banner {
-  padding: 25px;
-  width: 100%;
-  background-color: rgb(218, 153, 153);
-  color: whitesmoke;
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+.portfolio-item {
   margin-bottom: 30px;
 }
+
+.pagination {
+  margin-bottom: 30px;
+}
+
+
+
+
+
+
+
 .query {
   width: 65%;
   margin: 30px;
