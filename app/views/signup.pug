@@ -6,6 +6,21 @@ html
     link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/signup.css')
   body
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+      .container
+        a.navbar-brand(href='/user/signup') Radon Sign Up Page
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        #topBar.collapse.navbar-collapse
+          ul.navbar-nav.ml-auto
+            li.nav-item
+              a.nav-link(href='/') Home
+            
+
+
+
+
+
     .card-container
       h4 Sign up to Radon
       form(method='POST' action='/user/acount_signup' class='form')
@@ -29,3 +44,7 @@ html
           input#pw.form-control(type='text' name='dob' placeholder='Date of birth "MM-dd-yyyy"' require)
         .row
           button.btn.btn-primary(type='submit') Sign up
+
+  footer.py-2.bg-dark.fixed-bottom
+    .container
+      p.m-0.text-center.text-white Copyright © Radon 2018             

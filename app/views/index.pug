@@ -16,13 +16,17 @@ html(lang='en')
     // Navigation Bar
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
       .container
-        a.navbar-brand(href='#') Radon
+        a.navbar-brand(href='/') Radon
         button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
           span.navbar-toggler-icon
         #topBar.collapse.navbar-collapse
           ul.navbar-nav.ml-auto
             li.nav-item
               a.nav-link(href='/discussions') Discussions
+            li.nav-item
+              a.nav-link(href='/user/signin') Login
+            li.nav-item
+              a.nav-link(href='/user/signup') Sign up  
     // Navigation Bar ends here
     ////////////////////////////////////////////////////////////////////////////////////////
     // Page Content
