@@ -6,6 +6,27 @@ var apiOptions = {
 if (process.env.NODE_ENV === "production") {
   apiOptions.server = "add something here";
 }
+module.exports.deleteArticle = function (req, res) {
+  var urlParams = {
+    postId: req.params.postId
+  };
+  var requestOptions = {
+    url: req.protocol + '://' + req.get('host') + '/api/admin/delete_post',
+    method: 'DELETE',
+    json: urlParams
+  };
+  request (
+    requestOptions,
+    function (err, response, body) {
+      if (err) {
+        console.log(err);
+      }
+      else if (response.statusCode === 201) {
+        res.redirect("/admin/view_posts");
+      }
+    }
+  );
+}
 module.exports.editArticle = function (req, res) {
   if (req.file === undefined) {
     var urlParams = {
@@ -83,29 +104,30 @@ module.exports.addArticle = function (req, res) {
         content: '',
       }
     });
+  } else {
+    var urlParams = {
+      title: req.body.heading,
+      content: req.body.content,
+      createdOn: Date.now,
+      imageName: req.file.filename
+    };
+    var requestOptions = {
+      url: apiOptions.server + "/api/admin/add_article_to_radon",
+      method: "POST",
+      json: urlParams
+    };
+    request(
+      requestOptions,
+      function (err, response, body) {
+        if (err) {
+          console.log(err) // Print the google web page.
+        }
+        else if (response.statusCode === 201) {
+          res.redirect("/admin/view_posts");
+        }
+      }
+    );
   }
-   var urlParams = {
-    title: req.body.heading,
-    content: req.body.content,
-    createdOn: Date.now,
-    imageName: req.file.filename
-  };
-  var requestOptions = {
-    url: apiOptions.server + "/api/admin/add_article_to_radon",
-    method: "POST",
-    json: urlParams
-  };
-  request(
-    requestOptions,
-    function (err, response, body) {
-      if (err) {
-        console.log(err) // Print the google web page.
-      }
-      else if (response.statusCode === 201) {
-        res.redirect("/admin/view_posts");
-      }
-    }
-  );
 }
 module.exports.viewPosts = function (req, res) {
   var requestOptions = {

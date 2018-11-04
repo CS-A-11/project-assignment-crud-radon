@@ -34,7 +34,7 @@ body {
 }
 
 .side-bar {
-  width: 250px;
+  width: 25%;
   height: 100%;
   background-color: black;
   position: fixed;
@@ -55,21 +55,14 @@ body {
   display: block;
   text-decoration: none;
   color: whitesmoke;
-  background-color: rgb(136, 136, 218);
-  border-bottom-color: blue;
   border-bottom: 3px;
-  
 }
 
 .page-content {
   float: left;
-  width: 100%;
-  margin-left: 270px;
+  width: 70%;
+  margin-left: 26%;
   margin-top: 85px;
-}
-
-.page-content {
-  width: 75%;
 }
 
 #postContent {

@@ -34,5 +34,6 @@ router.get("/admin/view_posts", ctrlAdmin.viewPosts);
 router.get("/admin/edit_post/:post_id", ctrlAdmin.editPostPage);
 
 router.post("/admin/edit_article/:postId", upload.single('articleImage'), ctrlAdmin.editArticle);
+router.get("/admin/deleteArticle/:postId", ctrlAdmin.deleteArticle);
 
 module.exports = router;

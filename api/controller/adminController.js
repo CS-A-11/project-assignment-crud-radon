@@ -4,6 +4,20 @@ var sendPostResponse = function (res, status, content) {
   res.status(status);
   res.json(content);
 };
+module.exports.deletePost = function (req, res) {
+  article.findOneAndDelete(
+    { _id: req.body.postId },
+    function (err, article) {
+      if (err) {
+        console.log('error' + err);
+        sendPostResponse(res, 400, err);
+      } else {
+        console.log(article);
+        sendPostResponse(res, 201, article);
+      }
+    }
+  );
+}
 module.exports.updatePost = function (req, res) {
   article.findOneAndUpdate(
     { _id: req.params.postId }, 

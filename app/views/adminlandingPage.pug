@@ -7,21 +7,17 @@ html(lang="en")
     link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/admin.css')
   body
-    // Navigation Bar
-    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
-      .container
-        a.navbar-brand(href='/admin') Radon
-        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
-          span.navbar-toggler-icon
-        #topBar.collapse.navbar-collapse
-          ul.navbar-nav.ml-auto
-            li.nav-item
-              a.nav-link(href='/adminlandingPage') Home
-            li.nav-item
-              a.btn.btn-danger(href='#') Sign out
-    // Navigation Bar ends here
-
-
+    header.header-container 
+      .top-navigation
+        h4 Radon
+        a.btn.btn-danger(href='#') Sign out
+    .content-container
+      .side-bar
+        ul 
+          li
+            a(href='#') Add post
+          li
+            a(href='#') View posts
     .content-container
       .side-bar
         ul 
@@ -29,7 +25,4 @@ html(lang="en")
             a(href='/admin/create_article') Add Article
           li
             a(href='/admin/view_posts') View Posts
-
-
       .page-content
-        
