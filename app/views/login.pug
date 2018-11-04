@@ -6,11 +6,26 @@ html
     link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/userpage.css')
   body
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+      .container
+        a.navbar-brand(href='/user/signin') Radon Login Page
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        #topBar.collapse.navbar-collapse
+          ul.navbar-nav.ml-auto
+            li.nav-item
+              a.nav-link(href='/') Home
+
+
+    
+
+
+
     block content
       .page-container
         .side-bar1
           .heading
-            h2 Welcome to Radon
+            h1.text-secondary Radon
           .content
             ul
               li
@@ -35,4 +50,10 @@ html
                 button.btn.btn-primary(type='submit') Sign in
                 span or
                 a(href="/user/signup") Sign up
+
+    footer.py-2.bg-dark.fixed-bottom
+      .container
+        p.m-0.text-center.text-white Copyright © Radon 2018    
+
+
     script(src='/bootstrap/js/bootstrap.min.js')
