@@ -6,6 +6,7 @@ var logger = require("morgan");
 require("./app/models/db");
 
 var apiIndexRoute = require("./api/routes/index");
+var discussionsApi = require("./api/routes/discussion");
 var indexRouter = require("./app/routes/index");
 var profile = require("./app/routes/profile");
 var post = require("./app/routes/post");
@@ -20,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/api", apiIndexRoute);
+app.use("/api", [apiIndexRoute, discussionsApi]);
 app.use("/", indexRouter);
 app.use(profile);
 app.use("/post/:title", post);
