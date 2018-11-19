@@ -1,3 +1,100 @@
+var request = require("request");
+var apiOptions = {
+  server: "http://localhost:5000"
+};
+if (process.env.NODE_ENV === "production") {
+  apiOptions.server = "add something here";
+}
+
+module.exports.viewDiss = function (req, res) {
+  var requestOptions = {
+    url: apiOptions.server + "/api/user/discussions",
+    method: "GET",
+    json: {},
+  };
+  request(
+    requestOptions,
+    function (err, respose, body) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.render("discussions", {discussions: heading});
+      }
+    }
+  );
+}
+
+module.exports.deleteDiscussion = function (req, res) {
+  var urlParams = {
+    postId: req.params.discussionId
+  };
+  var requestOptions = {
+    url: req.protocol + '://' + req.get('host') + '/api/user/delete_discussion/',
+    method: 'DELETE',
+    json: urlParams
+  };
+  request (
+    requestOptions,
+    function (err, response, body) {
+      if (err) {
+        console.log(err);
+      }
+      else if (response.statusCode === 201) {
+        res.redirect("/discussions");
+      }
+    }
+  );
+}
+
+module.exports.createDiscussion = function (req,res){
+  if (req.file === undefined || req.body.heading === '' || req.body.content===''){
+    res.render("addDiscussion", {
+      title: "Create Discussion",
+      message: "Some fields are missing.",
+      discussions: {
+        _id: '',
+        title: '',
+        content: '',
+      }
+    });
+  } else {
+    var urlParams = {
+      title: req.body.heading,
+      content: req.body.content,
+      createdOn: Date.now,
+      imageName: req.file.filename
+    };
+    var requestOptions = {
+      url: apiOptions.server + "/api/user/discussions/add_discussion_to_radon",
+      method: "POST",
+      json: urlParams
+    };
+    request(
+      requestOptions,
+      function(err, response, body){
+        if (err){
+          console.log(err);   //print the google web page
+        }
+        else if (response.statusCode === 201){
+          res.redirect("/discussions");
+        }
+      }
+    )
+  }
+}
+
+
+module.exports.addDiscussion = function (req, res){
+  res.render("addDiscussion", {
+    title: "Add Discussion",
+    discussions: {
+      _id: '',
+      title: '',
+      content:'',
+    }
+  });   
+}
+
 module.exports.discussionsList = function (req, res) {
   res.render("discussions", {
     title: 'Discussions',
@@ -64,3 +161,4 @@ module.exports.query = function (req, res) {
     ]
   });
 }
+

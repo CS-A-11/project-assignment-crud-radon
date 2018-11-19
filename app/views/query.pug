@@ -8,10 +8,23 @@ html
         
 
   body
+    //Navigation Bar
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+      .container
+        a.navbar-brand(href='/') Radon
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+          
+        #topBar.collapse.navbar-collapse
+          ul.navbar-nav.ml-auto
+            li.nav-item
+              a.nav-link(href='/discussions') Discussions
+    // Navigation Bar ends here
+
     block content
-      .banner
-        h1 Radon Discussion forum 
-        p Welcome to Radon Discussion forum
+      //- .banner
+      //-   h1 Radon Discussion forum 
+      //-   p Welcome to Radon Discussion forum
       .query
         .user-details
           img(src=user.img, alt="")
@@ -26,7 +39,7 @@ html
               span= tag.name
           .query-date= date 
       .separator
-      .discussion-responses Responses
+      .discussion-responses Comments 
         each comment in comments
           .comment-details
             .user-details
