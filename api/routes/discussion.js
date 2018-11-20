@@ -9,7 +9,7 @@ router.get('/user/discussions', discussionController.discussionsList);
 //router.get('/user/discussions', discussionController.viewDiss);
 router.post('/user/discussions/add_discussion_to_radon', discussionController.discussionsCreate);
 //router.get('/user/discussions/get_discussions', discussionController.getDiscussions);
-// router.get('/user/discussions/:discussionid', discussionController.discussionsReadOne);
+router.get('/user/discussions/:discussionid', discussionController.discussionsReadOne);
 // router.put('/user/discussions/:discussionid',discussionController.discussionsUpdateOne);
 // router.delete('/user/discussions/:discussionid', discussionController.discussionsDeleteOne);
 

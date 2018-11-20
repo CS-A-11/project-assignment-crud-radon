@@ -27,7 +27,8 @@ module.exports.acountSignIn = function (req, res) {
       if (err) {
         console.log(err) // Print the google web page.
       }
-      if (response.statusCode === 201) {
+      if (response.statusCode === 201 && body.user.length !== 0) {
+        req.session.user = body.user[0];
         res.redirect("/");
       }
     }

@@ -85,7 +85,7 @@ html
       background: #bbb;
       }
    
-    
+
     //- button styling
     style.
       .button {
@@ -152,26 +152,32 @@ html
         blockquote "Discussion is an exchange of knowledge; argument an exchange of ignorance"
         // blockquote - Robert Quillen
         
-      br 
+      br
+      //- hr 
       //- center
       //-   button.btn.btn-primary(type='button') Add new topic
-      
       each discussion in discussions
         .query 
           .query-details
-            a(href="/queries/"+discussion.queryTopic)
-              h1= discussion.queryTopic
-            p= discussion.queryExcerpt
-            
-            .tags
-              each tag in discussion.tags
-                span= tag.name
-            .query-date= discussion.date
+            a(href="/discussions/"+discussion.title, style="color:#008CBA ;")
+              h3= discussion.title
+            - var x = discussion.content
+            - var y = x.substring(0, 200);
+            //- p!= discussion.content
+            p
+              span!= y
+              span ...
+            //- .tags
+            //-   each tag in discussion.tags
+            //-     span= tag.name
+            .query-date= discussion.createdOn
             br
             
             .user-details
               //img(src=discussion.user.img, alt="") 
-              h6= discussion.user.userName  
+              //- h6= discussion.user.userName
+            hr
+            br    
       
       center
         //button.btn.btn-primary.btn-lg(type='button') Add new 
@@ -179,7 +185,7 @@ html
         br
         a.button.button2(name='newTopic', href='/discussions/add_discussion', style="text-decoration: none;") Add New Topic
         br
-        button.button.button2 See All Topics
+        a.button.button.button2(href='/discussions', style="text-decoration: none;") See All Topics
         
         
         

@@ -14,37 +14,51 @@ html
         a.navbar-brand(href='/') Radon
         button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
           span.navbar-toggler-icon
-          
         #topBar.collapse.navbar-collapse
-          ul.navbar-nav.ml-auto
+          ul.navbar-nav.ml-auto 
             li.nav-item
-              a.nav-link(href='/discussions') Discussions
+              a.btn.btn-dark(href='/discussions') Discussions
+            li.nav-item
+              a.btn.btn-dark(href='/user/signin') Login
+  
+        //- #topBar.collapse.navbar-collapse
+        //-   ul.navbar-nav.ml-auto
+        //-     li.nav-item
+        //-       a.nav-link(href='/discussions') Discussions
     // Navigation Bar ends here
 
     block content
-      //- .banner
-      //-   h1 Radon Discussion forum 
-      //-   p Welcome to Radon Discussion forum
+      br
+      br
+      br
       .query
-        .user-details
-          img(src=user.img, alt="")
-          h6= user.userName
+        
         .query-details
-          a(href="/queries/" + queryTopic)
-            h1= queryTopic
+          a(href="/discussions/" + queryTopic)
+          h1= queryTopic
           p= queryDetails
           
-          .tags
-            each tag in tags
-              span= tag.name
+          //- .tags
+          //-   each tag in tags
+          //-     span= tag.name
           .query-date= date 
-      .separator
-      .discussion-responses Comments 
-        each comment in comments
-          .comment-details
-            .user-details
-              img(src=comment.user.img, alt="")
-              h6= comment.user.userName
-            .query-details
-              p= comment.comment
-              .query-date= date
+        .user-details
+          //- img(src=user.img, alt="")
+          img(src='/images/userIcon.png', alt="")
+          //- h6(style="color:green;")= user.userName 
+      br 
+      hr
+      h5 Comments
+      br
+      //- //- hr
+      //- .separator
+      //- .discussion-responses  
+      //-   each comment in comments
+      //-     .comment-details
+      //-       .user-details
+      //-         //- img(src=comment.user.img, alt="")
+      //-         img(src='/images/userIcon_comment.png', alt="")
+      //-         //- h6(style="color:green;")= comment.user.userName
+      //-       //- .query-details
+      //-       //-   p= comment.comment
+      //-       //-   .query-date= date
