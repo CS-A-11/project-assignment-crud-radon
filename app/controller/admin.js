@@ -78,20 +78,26 @@ module.exports.editPostPage = function (req, res) {
     }
   );
 }
-module.exports.adminlandingPage = function (req, res) {
-  res.render("adminlandingPage", { 
-    title: "Admin page"
-  });
-}
-module.exports.createPostPage = function (req, res) {
-  res.render("addarticle", { 
-    title: "Add article",
-    article: {
-      _id: '',
-      title: '',
-      content: '',
-    }
-  });
+module.exports.viewPosts = function (req, res) {
+  if (!req.session.user || req.session.user === false) {
+    res.redirect("/admin");
+  } else {
+    var requestOptions = {
+      url: apiOptions.server + "/api/admin/get_posts",
+      method: "GET",
+      json: {},
+    };
+    request(
+      requestOptions,
+      function (err, response, body) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.render("adminviewposts", { articles: body, title: "Articles Posted" });
+        }
+      }
+    );
+  }
 }
 module.exports.addArticle = function (req, res) {
   if (req.file === undefined || req.body.heading === '' || req.body.content === '') {
@@ -129,19 +135,60 @@ module.exports.addArticle = function (req, res) {
     );
   }
 }
-module.exports.viewPosts = function (req, res) {
+module.exports.createPostPage = function (req, res) {
+  if (!req.session.user || req.session.user === false) {
+    res.redirect("/admin");
+  } else {
+    res.render("addarticle", {
+      title: "Add article",
+      article: {
+        _id: '',
+        title: '',
+        content: '',
+      }
+    });
+  }
+}
+module.exports.adminlandingPage = function (req, res) {
+  if (!req.session.user || req.session.user === false) {
+    res.render("adminLogin", {
+      title: "Admin"
+    });
+  }
+  else {
+    res.render("adminlandingPage", { 
+      title: "Admin page"
+    });
+  }
+}
+module.exports.acountSignIn = function (req, res) {
+  var urlParams = {
+    username: req.body.name,
+    password: req.body.password
+  };
   var requestOptions = {
-    url: apiOptions.server + "/api/admin/get_posts",
-    method: "GET",
-    json: {},
+    url: req.protocol + '://' + req.get('host') + "/api/admin/admin_signin",
+    method: "POST",
+    json: urlParams
   };
   request(
     requestOptions,
     function (err, response, body) {
       if (err) {
-        console.log(err);
-      } else {
-        res.render("adminviewposts", { articles: body });
+        console.log(err) // Print the google web page.
+      }
+      else if (response.statusCode === 201) {
+        if (body.user.length === 0) {
+          res.render('adminLogin', {
+            title: 'Admin', 
+            message: 'User name or password are incorrect'
+          });
+        } else {
+          req.session.user = body.user[0];
+          res.render('adminlandingPage', {
+            title: "Admin page"
+          });
+        }
       }
     }
   );

@@ -13,4 +13,6 @@ router.get('/admin/get_post_by_id/:postId', adminController.getPostById);
 router.put('/admin/update_post/:postId', adminController.updatePost);
 router.delete('/admin/delete_post', adminController.deletePost);
 
+router.post('/admin/admin_signin', adminController.signinAdmin);
+
 module.exports = router;

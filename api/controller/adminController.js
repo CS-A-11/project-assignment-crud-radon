@@ -1,9 +1,19 @@
 var mongoose = require('mongoose');
 var article = mongoose.model('Article');
+var users = mongoose.model('users');
 var sendPostResponse = function (res, status, content) {
   res.status(status);
   res.json(content);
 };
+module.exports.signinAdmin = function (req, res) {
+  users.find({
+    username: req.body.username,
+    password: req.body.password,
+    admin: true
+  }).exec(function (err, user) {
+    sendPostResponse(res, 201, { status: "success", user });
+  });
+}
 module.exports.deletePost = function (req, res) {
   article.findOneAndDelete(
     { _id: req.body.postId },
