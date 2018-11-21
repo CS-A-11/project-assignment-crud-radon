@@ -159,7 +159,7 @@ html
       each discussion in discussions
         .query 
           .query-details
-            a(href="/discussions/"+discussion.title, style="color:#008CBA ;")
+            a(href="/queries/"+ discussion._id, style="color:#008CBA ;")
               h3= discussion.title
             - var x = discussion.content
             - var y = x.substring(0, 200);

@@ -32,20 +32,23 @@ html
       br
       br
       .query
-        
         .query-details
-          a(href="/discussions/" + queryTopic)
+          //- a(href="/view_query/" + discussion._id)
           h1= queryTopic
           p= queryDetails
-          
-          //- .tags
-          //-   each tag in tags
-          //-     span= tag.name
+            
+          .tags
+            span Tags: 
+            each tag in tags
+              //- span #
+              span(style="color:blue;")= "#" + tag.name
+              span &nbsp
+          //- span Date: 
           .query-date= date 
         .user-details
           //- img(src=user.img, alt="")
           img(src='/images/userIcon.png', alt="")
-          //- h6(style="color:green;")= user.userName 
+          h6(style="color:green;")= user.userName 
       br 
       hr
       h5 Comments

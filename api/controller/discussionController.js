@@ -52,7 +52,7 @@ module.exports.discussionsCreate = function(req, res){
   
   module.exports.discussionsReadOne = function (req, res){
     discussion.findById(req.params.discussionId, {
-      /*_id:1,*/ title:1, content:1, createdOn:1
+      _id:1, title:1, content:1, createdOn:1
     }, function(err, disc){
       if (err){
         sendPostResponse(res, 400, err);

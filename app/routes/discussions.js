@@ -18,14 +18,11 @@ var ctrlDiscussion = require("../controller/discussions");
 
 // router.get('/discussions', ctrlDiscussion.discussionsList);
 router.get('/discussions', ctrlDiscussion.viewDiss);
-//router.get('/discussions/:discussionid', ctrlDiscussion.query2);
+router.get('/queries/:discussionId', ctrlDiscussion.query2);
 //router.get('/queries/:query', ctrlDiscussion.query);
 router.get('/discussions/add_discussion', ctrlDiscussion.addDiscussion);
 router.post("/discussions/create_discussion", upload.single('discussionImage'), ctrlDiscussion.createDiscussion);
-router.get("/discussions/:discussionid", ctrlDiscussion.deleteDiscussion);
+//router.get("/discussions/:discussionid", ctrlDiscussion.deleteDiscussion);
 
-
-// router.get("/admin/create_article", ctrlAdmin.createPostPage);
-// router.post("/admin/add_article", upload.single('articleImage'), ctrlAdmin.addArticle);
 
 module.exports = router;

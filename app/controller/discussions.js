@@ -6,27 +6,6 @@ if (process.env.NODE_ENV === "production") {
   apiOptions.server = "add something here";
 }
 
-module.exports.query2 = function (req, res) {
-  var requestOptions = {
-    url: apiOptions.server + "/api/user/discussions/" + req.params.discussionId,
-    method: "GET",
-    json: {}
-  }
-  request(
-    requestOptions, 
-    function(err, response, body) {
-      if (!err && response.statusCode === 201) {
-        res.render("query", {
-          title: "Discussion Details",
-          // : req.params.discussionId,
-          queryDetails: req.params.content,
-          queryTopic: req.params.title 
-          // queryDetails: body
-        });
-      }
-    }
-  )
-}
 
 module.exports.viewDiss = function (req, res) {
   var requestOptions = {
@@ -158,6 +137,48 @@ module.exports.discussionsList = function (req, res) {
       }
     ]
   });
+}
+module.exports.query2 = function (req, res) {
+  var urlParams = {
+    discussionId: req.params.discussionId
+  };
+  var requestOptions = {
+    // url: apiOptions.server + "/api/user/discussions/" + req.params.discussionid,
+    // url: apiOptions.server + "/api/user/discussions/view",
+    // url: req.protocol + "://" + req.get('host') + "/api/query",
+    url: apiOptions.server + "/queries/" + req.params.discussionId,
+    method: "GET",
+    json: urlParams
+  }
+  request(
+    requestOptions, 
+    function(err, response, body) {
+      if (!err && response.statusCode === 201) {
+        res.render("query", {
+          title: "Discussion Details",
+          // : req.params.discussionId,
+          //discussionId: req.params.discussion_id,
+          // queryTopic: req.params.title, 
+          // queryDetails: body
+          //discussion: body
+          // queryTopic: 'sd;vhfbivjokqewkvdn scijm', 
+          queryTopic: response.title,
+          queryDetails: response.content,
+          date: response.createdOn,
+          tags: [
+            { id: 11, name: 'react_native' },
+            { id: 22, name: 'mobile_development' }
+          ],
+          user: {
+            userId: 11,
+            userName: response.creatorName,
+            // img: '/images/userIcon.png'
+          }
+        });
+        // res.redirect("");
+      }
+    }
+  )
 }
 
 module.exports.query = function (req, res) {
