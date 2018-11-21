@@ -1,44 +1,26 @@
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    title= title
-    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
-    link(rel='stylesheet', href='/stylesheets/admin.css')
-    script(src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=y9zqigrqs52xwnc8kuybf8spcuigzh6o4urg7e5pmk1vwcdu")
-  body
-    header.header-container 
-      .top-navigation
-        h4 Radon
-        a.btn.btn-danger(href='#') Sign out
-    .content-container
-      .side-bar
-        ul 
-          li
-            a(href='#') Add post
-          li
-            a(href='#') View posts
-      .page-content
-        .container
-          .table-responsive
-            table.table.table-striped
-              thead
-                tr
-                  th
-                    h4 Title
-                  th
-                    h4 Updated On
-                  th
-                    h4 Actions
-              tbody
-                each article in articles
-                  tr
-                    td
-                      h6= article.title
-                    //- p!= article.content
-                    td
-                      h6= article.createdOn
-                    td 
-                      a.btn.btn-primary(href="/admin/edit_post/" + article._id style="margin-right: 5px") Edit
-                      a.btn.btn-danger(href="/admin/deleteArticle/" + article._id) Delete
+extends admin-layout
+
+block content
+  .page-content
+    .container
+      .table-responsive
+        table.table.table-striped
+          thead
+            tr
+              th
+                h4 Title
+              th
+                h4 Updated On
+              th
+                h4 Actions
+          tbody
+            each article in articles
+              tr
+                td
+                  h6= article.title
+                //- p!= article.content
+                td
+                  h6= article.createdOn
+                td 
+                  a.btn.btn-primary(href="/admin/edit_post/" + article._id style="margin-right: 5px") Edit
+                  a.btn.btn-danger(href="/admin/deleteArticle/" + article._id) Delete

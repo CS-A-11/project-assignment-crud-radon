@@ -1,28 +1,5 @@
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    title= "Admin Page"
-    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
-    link(rel='stylesheet', href='/stylesheets/admin.css')
-  body
-    header.header-container 
-      .top-navigation
-        h4 Radon
-        a.btn.btn-danger(href='#') Sign out
-    .content-container
-      .side-bar
-        ul 
-          li
-            a(href='#') Add post
-          li
-            a(href='#') View posts
-    .content-container
-      .side-bar
-        ul 
-          li
-            a(href='/admin/create_article') Add Article
-          li
-            a(href='/admin/view_posts') View Posts
-      .page-content
+extends admin-layout
+
+block content
+  .page-content
+  

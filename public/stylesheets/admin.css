@@ -16,11 +16,23 @@ body {
   position: fixed;
 }
 
-.header-container h4 {
+.header-container a.title{
   float: left;
   display: block;
   color: whitesmoke;
-  
+  text-decoration: none;
+}
+
+.menu-icon {
+  float: left; 
+  color: white;
+  font-size: 25px;
+  margin: 3px 10px;
+  display: none;
+}
+
+.menu-icon:hover {
+  cursor: pointer;
 }
 
 .header-container a {
@@ -31,6 +43,7 @@ body {
 
 .content-container {
   overflow: hidden;
+  width: 100%;
 }
 
 .side-bar {
@@ -44,7 +57,7 @@ body {
 
 .side-bar ul {
   display: block;
-  padding-top: 15px
+  padding-top: 15px;
 }
 
 .side-bar ul li {
@@ -63,6 +76,7 @@ body {
   width: 70%;
   margin-left: 26%;
   margin-top: 85px;
+  transition: all 0.3s
 }
 
 #postContent {
@@ -79,4 +93,19 @@ body {
   border-radius: 8px;
   font-weight: bold;
   margin: 10px 0;
+}
+
+@media (max-width: 720px) {
+  .page-content {
+    margin-top: 80px;
+    margin-left: 40px;
+    width: 85%;
+  }
+  .side-bar {
+    width: 250px;
+    left: -250;
+  }
+  .menu-icon {
+    display: block;
+  }
 }

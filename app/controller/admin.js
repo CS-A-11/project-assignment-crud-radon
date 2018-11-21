@@ -185,9 +185,7 @@ module.exports.acountSignIn = function (req, res) {
           });
         } else {
           req.session.user = body.user[0];
-          res.render('adminlandingPage', {
-            title: "Admin page"
-          });
+          res.redirect('/admin');
         }
       }
     }
