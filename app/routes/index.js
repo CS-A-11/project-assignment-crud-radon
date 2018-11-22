@@ -37,5 +37,6 @@ router.post("/admin/edit_article/:postId", upload.single('articleImage'), ctrlAd
 router.get("/admin/deleteArticle/:postId", ctrlAdmin.deleteArticle);
 
 router.post("/admin/acount_signin", ctrlAdmin.acountSignIn);
+router.get("/admin/acount_signout", ctrlAdmin.acountSignOut);
 
 module.exports = router;

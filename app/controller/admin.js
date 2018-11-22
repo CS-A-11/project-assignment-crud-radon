@@ -191,3 +191,13 @@ module.exports.acountSignIn = function (req, res) {
     }
   );
 }
+
+module.exports.acountSignOut = function (req, res) {
+  if (req.session) {
+    req.session.destroy(function (err) {
+      res.redirect("/");
+    });
+  } else {
+    res.redirect("/");
+  }
+}

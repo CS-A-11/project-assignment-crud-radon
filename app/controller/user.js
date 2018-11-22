@@ -6,10 +6,39 @@ if (process.env.NODE_ENV === "production") {
   apiOptions.server = "add something here";
 }
 
+module.exports.logoutProfile = function (req, res) {
+  if (req.session) {
+    req.session.destroy(function (err) {
+      res.redirect("/");
+    });
+  } else {
+    res.redirect("/");
+  }
+}
+
 module.exports.profilePage = function (req, res) {
-  res.render("userProfilePage", {
-    title: "Profile"
-  });
+  if (!req.session.user) {
+    res.redirect("/user/signin");
+  } else {
+    var requestOptions = {
+      url: req.protocol + '://' + req.get('host') + '/api/user/get_all_queries/' + req.session.user._id,
+      method: 'GET',
+      json: {}
+    };
+    request(
+      requestOptions,
+      function (err, response, body) {
+        if (!err && response.statusCode === 201) {
+          res.render("userProfilePage", {
+            title: "Profile",
+            queries: body,
+            isSessionSet: true,
+            moment: require('moment')
+          });
+        }
+      }
+    );
+  }
 }
 
 module.exports.signinPage = function (req, res) {

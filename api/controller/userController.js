@@ -1,12 +1,30 @@
 var mongoose = require('mongoose');
 var users = mongoose.model('users');
+var queries = mongoose.model('Discussion');
 
 var sendSigninResponse = function (res, status, content) {
   res.status(status);
   res.json(content);
 };
+var sendResponse = function (res, status, content) {
+  res.status(status);
+  res.json(content);
+};
+module.exports.getAllPosts = function (req, res) {
+  queries.find(
+    { "creatorName._id": req.params.uid },
+    "title content createdOn",
+    function (err, queries) {
+      if (!err) {
+        sendResponse(res, 201, queries);
+      } else {
+        sendResponse(res, 400, err);
+      }
+    }
+  ).sort({"createdOn":-1});
+}
+
 module.exports.signup = function (req, res) {
-  console.log(req.body);
   users.create(req.body, function(err, user) {
     if (err) {
       console.log(err);

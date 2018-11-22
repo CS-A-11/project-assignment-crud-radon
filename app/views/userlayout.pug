@@ -19,13 +19,12 @@ html(lang='en')
           ul.navbar-nav.ml-auto
             li.nav-item
               a.nav-link(href='/discussions') Discussions
-            li.nav-item
-              a.nav-link(href='/user/signin') Login
-            li.nav-item
-              a.nav-link(href='/user/signup') Sign up 
-    
+            if isSessionSet
+              li.nav-item
+                a.nav-link(href='/user/logout') Logout
+
     block content
     
-    footer.py-2.bg-dark
+    footer.bottom-footer.py-2.bg-dark
       .container
         p.m-0.text-center.text-white Copyright © Radon 2018

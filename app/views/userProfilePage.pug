@@ -1,3 +1,30 @@
 extends userlayout
 
 block content
+  .profile-info
+    h2(style="") waneed
+    h6(style="color: #6a737c !important;") waneed.parkash1@gmail.com
+    p Apparently this user does not like to share about him
+
+  .section-heading 
+    h3 Queries posted
+  
+  .posted-queries
+    if queries.length === 0
+      h3 No queries found!!!
+    else
+      each query in queries
+        .query 
+          .query-details
+            a(href="/queries/"+ query._id, style="color:#008CBA ;")
+              h3= query.title
+            - var x = query.content
+            - var y = x.substring(0, 200);
+            //- p!= discussion.content
+            p
+              span!= y
+              span ...
+            .query-date= moment(query.createdOn).format('MM-DD-YYYY')
+            br
+            hr
+            br
