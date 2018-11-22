@@ -6,6 +6,12 @@ if (process.env.NODE_ENV === "production") {
   apiOptions.server = "add something here";
 }
 
+module.exports.profilePage = function (req, res) {
+  res.render("userProfilePage", {
+    title: "Profile"
+  });
+}
+
 module.exports.signinPage = function (req, res) {
   res.render("login", { 
     title: "Sign in"
