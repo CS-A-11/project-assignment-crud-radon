@@ -7,153 +7,54 @@ html(lang='en')
 
     link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/index.css')  
-
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
     
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js')
+   
     
   
     
   body
-    // Navigation Bar
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
-      .container
-        a.navbar-brand(href='/') Radon
-        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
-          span.navbar-toggler-icon
-        #topBar.collapse.navbar-collapse
-          ul.navbar-nav.ml-auto
-            li.nav-item
-              a.nav-link(href='/discussions') Discussions
-            li.nav-item
-              a.nav-link(href='/user/signin') Login
-            li.nav-item
-              a.nav-link(href='/user/signup') Sign up  
-    // Navigation Bar ends here
-    ////////////////////////////////////////////////////////////////////////////////////////
-    // Page Content
-    .container
-      // Page Heading
-      h1.my-4.text-center.text-info
-        | Research Publications
-
-      .row
-        .col-lg-3.col-md-4.col-sm-6.portfolio-item
-          .card.h-100
-            a(href='#')
-              img.card-img-top(src='http://placehold.it/700x400', alt='')
-            .card-body
-              h4.card-title
-                a(href='#') Project One
-              p.card-text
-                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!
-              button.btn.btn-outline-secondary(type='button') More
-        
-        .col-lg-3.col-md-4.col-sm-6.portfolio-item
-          .card.h-100
-            a(href='#')
-              img.card-img-top(src='http://placehold.it/700x400', alt='')
-            .card-body
-              h4.card-title
-                a(href='#') Project One
-              p.card-text
-                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!
-              button.btn.btn-outline-secondary(type='button') More
-
-        .col-lg-3.col-md-4.col-sm-6.portfolio-item
-          .card.h-100
-            a(href='#')
-              img.card-img-top(src='http://placehold.it/700x400', alt='')
-            .card-body
-              h4.card-title
-                a(href='#') Project One
-              p.card-text
-                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!
-              button.btn.btn-outline-secondary(type='button') More
-        
-        .col-lg-3.col-md-4.col-sm-6.portfolio-item
-          .card.h-100
-            a(href='#')
-              img.card-img-top(src='http://placehold.it/700x400', alt='')
-            .card-body
-              h4.card-title
-                a(href='#') Project One
-              p.card-text
-                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!
-              button.btn.btn-outline-secondary(type='button') More
-
-
-
-        
-      // /.row
-      // Pagination
-      ul.pagination.justify-content-center
-        li.page-item
-          a.page-link(href='#', aria-label='Previous')
-            span(aria-hidden='true') «
-            span.sr-only Previous
-        li.page-item
-          a.page-link(href='#') 1
-        li.page-item
-          a.page-link(href='#') 2
-        li.page-item
-          a.page-link(href='#') 3
-        li.page-item
-          a.page-link(href='#', aria-label='Next')
-            span(aria-hidden='true') »
-            span.sr-only Next
-    // /.container
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        .container
+          a.navbar-brand(href='/') Radon
+          button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+          #topBar.collapse.navbar-collapse
+            ul.navbar-nav.ml-auto
+              li.nav-item
+                a.nav-link(href='/discussions') Discussions
+              li.nav-item
+                a.nav-link(href='/user/signin') Login
+              li.nav-item
+                a.nav-link(href='/user/signup') Sign up  
     
-  
- 
-    
-    
-
-
-
-
-
-
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////   
-    // Footer starts here
-    //- footer.py-5.bg-dark.fixed-bottom
-    //-   .container
-    //-     p.text-center.text-white Copyright © Radon 2018
-    //-   // /.container
-    //-   // Bootstrap core JavaScript
-    //-   script(src='vendor/jquery/jquery.min.js')
-    //-   script(src='vendor/bootstrap/js/bootstrap.bundle.min.js')
-    //-   // Footer
-    footer.py-2.bg-dark
-      .container
-        p.m-0.text-center.text-white Copyright © Radon 2018
-
-
+    block Content
+      center 
+        h1.my-4.text-center.text-info Research Publications
         
-      // /.container
-      // Bootstrap core JavaScript
-      //script(src='vendor/jquery/jquery.min.js')
-      //script(src='vendor/bootstrap/js/bootstrap.bundle.min.js')
+        
+      each n in articles
+        a(href="/post/"+ n._id, style="color:#008CBA ;")
+          h3(href='/post')= n.title
 
-
-
-
-  
+        p!=n.content.substring(0, 100)+'....'
+        h3=n.createdOn.substring(0.10)
+      
+      
+      
 
       
-  
+          
+            
+            
+            
+      
+      
+      
+        
