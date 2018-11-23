@@ -6,8 +6,65 @@ if (process.env.NODE_ENV === "production") {
   apiOptions.server = "add something here";
 }
 
+module.exports.editDiscussionPage = function (req, res) {
+  var requestOptions = {
+    url: apiOptions.server + "/api/user/queries/" + req.params.discussionId,
+    method: "GET",
+    json: {}
+  }
+  request(
+    requestOptions,
+    function (err, response, body) {
+      if (!err && response.statusCode === 201) {
+        res.render("addDiscussion", {
+          title: "Edit Discussion",
+          discussion: body
+        });  
+      }
+    }
+  );
+}
+
+module.exports.editDiscussion = function (req, res) {
+  if (req.file === undefined) {
+    var urlParams = {
+      title: req.body.heading,
+      content: req.body.content,
+      createdOn: Date.now
+    };
+  } else {
+    var urlParams = {
+      title: req.body.heading,
+      content: req.body.content,
+      createdOn: Date.now,
+      imageName: req.file.filename
+    };
+  }
+  var requestOptions = {
+    url: apiOptions.server + "/api/user/update_discussion/" + req.params.discussionId,
+    method: "PUT",
+    json: urlParams
+  };
+  request(
+    requestOptions,
+    function (err, response, body) {
+      if (err) {
+        console.log(err);
+      }
+      else if (response.statusCode === 201) {
+        res.redirect("/discussions");
+      }
+    }
+  );
+}
 
 module.exports.viewDiss = function (req, res) {
+  var ans;
+  if (!req.session.user)
+    ans=false;
+  else 
+    ans=true ; 
+
   var requestOptions = {
     url: apiOptions.server + "/api/user/discussions",
     method: "GET",
@@ -19,7 +76,7 @@ module.exports.viewDiss = function (req, res) {
       if (err) {
         console.log(err);
       } else {
-        res.render("discussions", {discussions: body});
+        res.render("discussions", {discussions: body, title:"Discussions", isSessionSet:ans });
       }
     }
   );
@@ -30,7 +87,7 @@ module.exports.deleteDiscussion = function (req, res) {
     postId: req.params.discussionId
   };
   var requestOptions = {
-    url: req.protocol + '://' + req.get('host') + '/api/user/delete_discussion/',
+    url: req.protocol + '://' + req.get('host') + '/api/user/delete_discussion',
     method: 'DELETE',
     json: urlParams
   };
@@ -45,6 +102,34 @@ module.exports.deleteDiscussion = function (req, res) {
       }
     }
   );
+}
+
+module.exports.createComment =function (req, res) {
+  if (req.body.commentBox === undefined) {}
+  else {
+    var urlParams = {
+      body: req.body.commentBox,
+      createdOn: Date.now,
+      creatorName: req.session.user
+    };
+
+    var requestOptions = {
+      url: apiOptions.server + "/api/user/add_comment/" + req.params.discussionId,
+      method: "POST",
+      json: urlParams
+    };
+
+    request(requestOptions,
+      function(err, response, body) {
+        if (err){
+          console.log(err);   //print the google web page
+        }
+        else if (response.statusCode === 201){
+          res.redirect("/queries/" + req.params.discussionId);
+        }
+      })
+
+  }
 }
 
 module.exports.createDiscussion = function (req,res){
@@ -138,7 +223,9 @@ module.exports.discussionsList = function (req, res) {
     ]
   });
 }
-module.exports.query2 = function (req, res) {
+
+
+module.exports.query3 = function (req, res) {
   var urlParams = {
     discussionId: req.params.discussionId
   };
@@ -146,7 +233,7 @@ module.exports.query2 = function (req, res) {
     // url: apiOptions.server + "/api/user/discussions/" + req.params.discussionid,
     // url: apiOptions.server + "/api/user/discussions/view",
     // url: req.protocol + "://" + req.get('host') + "/api/query",
-    url: apiOptions.server + "/queries/" + req.params.discussionId,
+    url: apiOptions.server + "/user/queries/" + req.params.discussionId,
     method: "GET",
     json: urlParams
   }
@@ -154,26 +241,95 @@ module.exports.query2 = function (req, res) {
     requestOptions, 
     function(err, response, body) {
       if (!err && response.statusCode === 201) {
-        res.render("query", {
+        res.render('query', {
+          user: {
+            userId: 11,
+            userName: "Fauz",
+            // img: '/images/userIcon.png'
+          },
+          queryTopic: "Creates a react native application",
+          queryDetails: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 
+          tags: [
+            { id: 11, name: 'react native' },
+            { id: 22, name: 'mobile development' }
+          ],
+          date: 'Monday, August 20, 2018', 
+          id: 26,
+          comments: [
+            {
+              user: {
+                userId: 10,
+                userName: "Waneed",
+                // img: '/images/userIcon.png'
+              },
+              comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+              date: 'Monday, August 20, 2018',
+            }
+          ]
+        });
+      }
+    }
+  )
+}
+
+
+module.exports.query2 = function (req, res) {
+  var ans;
+  if (!req.session.user)
+    ans=false;
+  else 
+    ans=true ;
+  
+  // var urlParams = {
+  //   discussionId: req.params.discussionId
+  // };
+  var requestOptions = {
+    // url: apiOptions.server + "/api/user/discussions/" + req.params.discussionid,
+    // url: apiOptions.server + "/api/user/discussions/view",
+    // url: req.protocol + "://" + req.get('host') + "/api/query",
+    url: apiOptions.server + "/api/user/queries/" + req.params.discussionId,
+    method: "GET",
+    json: {}
+  }
+  request(
+    requestOptions, 
+    function(err, response, body) {
+      if (!err && response.statusCode === 201) {
+        res.render('query', {
           title: "Discussion Details",
-          // : req.params.discussionId,
-          //discussionId: req.params.discussion_id,
-          // queryTopic: req.params.title, 
-          // queryDetails: body
-          //discussion: body
-          // queryTopic: 'sd;vhfbivjokqewkvdn scijm', 
-          queryTopic: response.title,
-          queryDetails: response.content,
-          date: response.createdOn,
+          isSessionSet:ans,
+          discussion: body,
+          // // : req.params.discussionId,
+          // //discussionId: req.params.discussion_id,
+          // // queryTopic: req.params.title, 
+          // queryDetails: 'ksncl3n34',
+          // //discussion: body
+          //  queryTopic: 'sd;vhfbivjokqewkvdn scijm', 
+          // // queryTopic: response.title,
+          // // queryDetails: content,
+          // // date: response.createdOn,
+          // date: '1234',
           tags: [
             { id: 11, name: 'react_native' },
             { id: 22, name: 'mobile_development' }
           ],
           user: {
             userId: 11,
-            userName: response.creatorName,
+            // userName: response.creatorName,
+            userName: "Fauz Ahmad"
             // img: '/images/userIcon.png'
-          }
+          },
+          comments: [
+            {
+              user: {
+                userId: 10,
+                userName: "Waneed",
+                // img: '/images/userIcon.png'
+              },
+              comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+              date: 'Monday, August 20, 2018',
+            }
+          ]
         });
         // res.redirect("");
       }

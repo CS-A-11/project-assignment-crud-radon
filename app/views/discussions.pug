@@ -133,7 +133,10 @@ html
         #topBar.collapse.navbar-collapse
           ul.navbar-nav.ml-auto 
             li.nav-item
-              a.btn.btn-dark(href='/user/signin') Login
+              if isSessionSet == false
+                a.btn.btn-dark(href='/user/signin') Login
+              else 
+                a.btn.btn-dark(href='/user/signin') Sign out  
          
     // Navigation Bar ends here
     
@@ -147,9 +150,10 @@ html
             i.fa.fa-search
 
     block content
-      center 
-        h1.my-4.text-center.text-info Discussions
-        blockquote "Discussion is an exchange of knowledge; argument an exchange of ignorance"
+      .jumbotron
+        center 
+          h1.my-4.text-center.text-info Discussions
+          blockquote "Discussion is an exchange of knowledge; argument an exchange of ignorance"
         // blockquote - Robert Quillen
         
       br

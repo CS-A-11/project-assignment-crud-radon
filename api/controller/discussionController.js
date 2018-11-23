@@ -52,7 +52,7 @@ module.exports.discussionsCreate = function(req, res){
   
   module.exports.discussionsReadOne = function (req, res){
     discussion.findById(req.params.discussionId, {
-      _id:1, title:1, content:1, createdOn:1
+      _id:1, title:1, content:1, createdOn:1, creatorName:1
     }, function(err, disc){
       if (err){
         sendPostResponse(res, 400, err);
@@ -92,7 +92,7 @@ module.exports.discussionsCreate = function(req, res){
                 sendPostResponse(res, 404, err);
                 return;
               }
-              sendPostResponse(res, 204, null);
+              sendPostResponse(res, 201, null);
             }
         );
     } else {
@@ -124,7 +124,19 @@ module.exports.discussionsCreate = function(req, res){
       sendPostResponse(res, 404, {"message": "discussionID not found"});
     } else {
       disc.comments.push({
-        
+        body: req.body.body,
+        createdOn: req.body.createdOn,
+        creatorName:req.body.creatorName
+      });
+      disc.save(function(err, disc){
+        thisComment;
+        if (err) {
+          sendPostResponse(res, 400, err);
+        }
+        else {
+          thisComment = disc.comments[disc.comments.length - 1];
+          sendPostResponse(res, 201, thisComment);
+        }
       })
     }
   }
