@@ -16,7 +16,7 @@ html(lang="en")
         xmlHttp.open("POST", "/admin/acount_signin_ajax", true);
         xmlHttp.onreadystatechange = function () {
           if (this.readyState === 4 && this.status === 201) {
-            window.location = '/admin';
+            window.location.replace("/admin");
           } else
           if (this.readyState === 4 && this.status === 400) {
             var result = document.getElementById('response');
@@ -31,7 +31,6 @@ html(lang="en")
         xmlHttp.send("username="+name+"&password="+password);
         return false;
       }
-
   body
     .login-page-main
       .login-card

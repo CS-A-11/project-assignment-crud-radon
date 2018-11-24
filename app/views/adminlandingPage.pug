@@ -2,6 +2,38 @@ extends admin-layout
 
 block content
   .page-content
+    script(type="text/javascript" src="https://www.gstatic.com/charts/loader.js")
+    script(type="text/javascript").
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var chartData = [
+          ['Time', 'Queries'],
+          ['2015',  30],
+          ['2016',  100],
+          ['2017',  35],
+        ];
+        var data = JSON.parse('!{JSON.stringify(stats)}');
+
+        for (var i = 0; i < data.length; i++) {
+          chartData.push([""+data[i].year, data[i].total]);
+        }
+
+        var data = google.visualization.arrayToDataTable(chartData);
+
+        var options = {
+          title: 'Company Performance',
+          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+
+    #chart_div(style="width: 400px; height: 300px;")
+
     //- .col-lg-3.col-md-4.col-sm-6.portfolio-item(style="height: 450px;")
     //-   .card.h-100
     //-     a(href='#')

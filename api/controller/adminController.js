@@ -1,10 +1,25 @@
 var mongoose = require('mongoose');
 var article = mongoose.model('Article');
 var users = mongoose.model('users');
+var discussion = mongoose.model('Discussion');
 var sendPostResponse = function (res, status, content) {
   res.status(status);
   res.json(content);
 };
+module.exports.getAllDiscussions = function (req, res) {
+  discussion.find({}, {
+    title: 1,
+    createdOn: 1,
+    creatorName: 1
+  },
+  function (err, article) {
+    if (err) {
+      sendPostResponse(res, 400, err);
+    } else {
+      sendPostResponse(res, 201, article);
+    }
+  });
+}
 module.exports.signinAdmin = function (req, res) {
   users.find({
     username: req.body.username,

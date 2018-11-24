@@ -1,4 +1,5 @@
 var request = require("request");
+var moment = require("moment");
 
 var apiOptions = {
   server: "http://localhost:5000"
@@ -114,7 +115,7 @@ module.exports.addArticle = function (req, res) {
     var urlParams = {
       title: req.body.heading,
       content: req.body.content,
-      createdOn: Date.now,
+      createdOn: Date.now('dd-mm-yyyy'),
       imageName: req.file.filename
     };
     var requestOptions = {
@@ -149,18 +150,7 @@ module.exports.createPostPage = function (req, res) {
     });
   }
 }
-module.exports.adminlandingPage = function (req, res) {
-  if (!req.session.user || req.session.user === false) {
-    res.render("adminLogin", {
-      title: "Admin"
-    });
-  }
-  else {
-    res.render("adminlandingPage", { 
-      title: "Admin page"
-    });
-  }
-}
+
 module.exports.acountSignInAjax = function (req, res) {
   var urlParams = {
     username: req.body.username,
@@ -228,5 +218,58 @@ module.exports.acountSignOut = function (req, res) {
     });
   } else {
     res.redirect("/");
+  }
+}
+module.exports.adminlandingPage = function (req, res) {
+  if (!req.session.user || req.session.user === false) {
+    res.render("adminLogin", {
+      title: "Admin"
+    });
+  }
+  else {
+    var requestOptions = {
+      url: req.protocol + '://' + req.get('host') + "/api/admin/get_all_discussions",
+      method: "GET",
+      json: {}
+    };
+    request(
+      requestOptions,
+      function (err, response, body) {
+        if (err) {
+          console.log(err);
+        } else {
+          if (response.statusCode === 201) {}
+
+          var docs = body;
+          var stats = {};
+
+          for (doc in docs) {
+            var year = moment(doc.createdOn).year();
+            var stat = stats[year];
+            if (stat === undefined) {
+              stat = {
+                year: year,
+                total: 1
+              }
+              stats[year] = stat;
+            } else {
+              stats[year].total++;
+            }
+          }
+
+          var statArray = [];
+          for (var key in stats) {
+            var obj = stats[key];
+            statArray.push(obj);
+          }
+
+          res.render("adminlandingPage", { 
+            title: "Admin page",
+            stats: statArray,
+            docs: docs
+          });
+        }
+      }
+    );
   }
 }
