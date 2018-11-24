@@ -39,4 +39,6 @@ router.get("/admin/deleteArticle/:postId", ctrlAdmin.deleteArticle);
 router.post("/admin/acount_signin", ctrlAdmin.acountSignIn);
 router.get("/admin/acount_signout", ctrlAdmin.acountSignOut);
 
+router.post("/admin/acount_signin_ajax", ctrlAdmin.acountSignInAjax);
+
 module.exports = router;

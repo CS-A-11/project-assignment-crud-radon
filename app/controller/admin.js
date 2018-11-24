@@ -161,6 +161,35 @@ module.exports.adminlandingPage = function (req, res) {
     });
   }
 }
+module.exports.acountSignInAjax = function (req, res) {
+  var urlParams = {
+    username: req.body.username,
+    password: req.body.password
+  };
+  var requestOptions = {
+    url: req.protocol + '://' + req.get('host') + "/api/admin/admin_signin",
+    method: "POST",
+    json: urlParams
+  };
+  request(
+    requestOptions,
+    function (err, response, body) {
+      if (err) {
+        console.log(err) // Print the google web page.
+      }
+      else if (response.statusCode === 201) {
+        if (body.user.length === 0) {
+          res.status(400);
+          res.send('User not found');
+        } else {
+          req.session.user = body.user[0];
+          res.status(201);
+          res.send('User found');
+        }
+      }
+    }
+  );
+}
 module.exports.acountSignIn = function (req, res) {
   var urlParams = {
     username: req.body.name,
