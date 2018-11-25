@@ -32,7 +32,14 @@ block content
         chart.draw(data, options);
       }
 
-    #chart_div(style="width: 400px; height: 300px;")
+    #chart_div
+    #user_queries
+      each query in queries
+        .query-card
+          .querier
+            .querier-name= query.name
+          .query-heading
+            a(href="#" style="text-decoration: none; color: black")= query.title
 
     //- .col-lg-3.col-md-4.col-sm-6.portfolio-item(style="height: 450px;")
     //-   .card.h-100

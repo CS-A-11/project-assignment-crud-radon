@@ -17,6 +17,43 @@ body {
   z-index: 100;
 }
 
+#chart_div {
+  width: 400px; 
+  height: 300px;
+  float: left;
+}
+
+#user_queries {
+  width: 40%;
+  float: left;
+  margin-left: 50px;
+}
+.query-card {
+  width: 100%;
+  clear: both;
+  padding-top: 10px;
+  display: block;
+}
+.querier {
+  width: 50px;
+  height: 50px;
+  background-color: rgb(15, 11, 11);
+  border-radius: 50px;
+  position: relative;
+  float: left;
+}
+.querier-name {
+  position: absolute;
+  top: 13px;
+  right: 16px;
+  color: white;
+}
+.query-heading {
+  float: left;
+  width: 70%;
+  margin: 10px;
+}
+
 .header-container a.title{
   float: left;
   display: block;
@@ -96,6 +133,22 @@ body {
   margin: 10px 0;
 }
 
+@media (max-width: 1050px) {
+  #user_queries {
+    width: 95%;
+    margin: auto;
+  }
+}
+
+@media (max-width: 950px) {
+  .query-card {
+    width: 100%;
+  }
+  .query-heading {
+    width: 80%;
+  }
+}
+
 @media (max-width: 720px) {
   .page-content {
     margin-top: 80px;
@@ -108,5 +161,22 @@ body {
   }
   .menu-icon {
     display: block;
+  }
+
+  #user_queries {
+    width: 90%;
+    margin: auto;
+  }
+  .query-card {
+    width: 100%;
+  }
+  .query-heading {
+    width: 80%;
+  }
+}
+
+@media (max-width: 550px) {
+  .query-heading {
+    width: 70%;
   }
 }

@@ -1,0 +1,27 @@
+.text-white {
+  color: #fff!important;
+}
+.text-center {
+  text-align: center!important;
+}
+.m-0 {
+  margin: 0!important;
+}
+.pb-2, .py-2 {
+  padding-bottom: .5rem!important;
+}
+.bg-dark {
+  background-color: #343a40!important;
+}
+.page-content {
+  margin-top: 80px;
+  clear: both;
+  width: 100%;
+  height: 100%;
+  overflow:hidden;
+}
+.card-item {
+  height: 490px; 
+  float: left; 
+  margin: 50px;
+}

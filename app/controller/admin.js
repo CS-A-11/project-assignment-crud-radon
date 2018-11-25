@@ -239,10 +239,8 @@ module.exports.adminlandingPage = function (req, res) {
           console.log(err);
         } else {
           if (response.statusCode === 201) {}
-
           var docs = body;
           var stats = {};
-
           for (doc in docs) {
             var year = moment(doc.createdOn).year();
             var stat = stats[year];
@@ -256,17 +254,19 @@ module.exports.adminlandingPage = function (req, res) {
               stats[year].total++;
             }
           }
-
+          for (var i = 0; i < body.length; i++) {
+            body[i].name = body[i].creatorName.firstname.charAt(0).toUpperCase();
+            body[i].name += body[i].creatorName.lastname.charAt(0).toUpperCase();
+          }
           var statArray = [];
           for (var key in stats) {
             var obj = stats[key];
             statArray.push(obj);
           }
-
           res.render("adminlandingPage", { 
             title: "Admin page",
             stats: statArray,
-            docs: docs
+            queries: body
           });
         }
       }

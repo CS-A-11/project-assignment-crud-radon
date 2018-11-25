@@ -14,6 +14,8 @@ var post = require("./app/routes/post");
 var discussions = require("./app/routes/discussions");
 var userRoutes = require("./app/routes/users");
 var homeRoutes = require("./app/routes/home");
+var articlePostApi = require("./api/routes/articlePost");
+var articlePost = require("./app/routes/articlePost");
 
 app.set("views", path.join(__dirname, "app", "views"));
 app.set("view engine", "pug");
@@ -30,9 +32,11 @@ app.use(session({
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api", [apiIndexRoute, discussionsApi]);
+app.use("/api", articlePostApi);
 app.use("/", indexRouter);
 app.use("/", userRoutes);
 app.use("/", homeRoutes);
+app.use("/", articlePost);
 app.use(profile);
 app.use("/post/:title", post);
 app.use("/", discussions);

@@ -1,0 +1,14 @@
+extends articlePostViewLayout
+
+block content
+  .page-content
+    each article in articles
+      .card-item.col-lg-3.col-md-4.col-sm-6.portfolio-item
+        .card.h-100
+          a(href='#')
+            img.card-img-top(src='http://placehold.it/700x400', alt='')
+          .card-body
+            h5.card-title
+              a(href='#')= article.title
+            .card-text(style="font-size: 0.9em; height: 125px; overflow: hidden;")!= article.content
+            a.btn.btn-outline-secondary(href="#" style="margin-top: 10px;") More

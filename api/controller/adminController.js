@@ -18,7 +18,7 @@ module.exports.getAllDiscussions = function (req, res) {
     } else {
       sendPostResponse(res, 201, article);
     }
-  });
+  }).sort({"createdOn":-1});
 }
 module.exports.signinAdmin = function (req, res) {
   users.find({
