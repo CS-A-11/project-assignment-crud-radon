@@ -28,7 +28,7 @@ router.post('/queries/:discussionId', ctrlDiscussion.createComment);
 // router.get('/queries/:discussionId/comments/:commentId', ctrlDiscussion.createComment);
 
 // U
-router.get("/edit_discussion/:discusssionId", ctrlDiscussion.editDiscussionPage);
+router.get("/edit_discussion/:discussionId", ctrlDiscussion.editDiscussionPage);
 router.post("/edit_query/:discussionId", upload.single('discussionImage'), ctrlDiscussion.editDiscussion);
 
 

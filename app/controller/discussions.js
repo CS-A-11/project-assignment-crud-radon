@@ -6,38 +6,22 @@ if (process.env.NODE_ENV === "production") {
   apiOptions.server = "add something here";
 }
 
-module.exports.editDiscussionPage = function (req, res) {
-  var requestOptions = {
-    url: apiOptions.server + "/api/user/queries/" + req.params.discussionId,
-    method: "GET",
-    json: {}
-  }
-  request(
-    requestOptions,
-    function (err, response, body) {
-      if (!err && response.statusCode === 201) {
-        res.render("addDiscussion", {
-          title: "Edit Discussion",
-          discussion: body
-        });  
-      }
-    }
-  );
-}
-
 module.exports.editDiscussion = function (req, res) {
   if (req.file === undefined) {
     var urlParams = {
       title: req.body.heading,
       content: req.body.content,
-      createdOn: Date.now
+      createdOn: Date.now,
+      // imageName: req.body.file.filename,
+      // creatorName: req.session.user
     };
   } else {
     var urlParams = {
       title: req.body.heading,
       content: req.body.content,
       createdOn: Date.now,
-      imageName: req.file.filename
+      imageName: req.file.filename,
+      creatorName: req.session.user
     };
   }
   var requestOptions = {
@@ -57,6 +41,26 @@ module.exports.editDiscussion = function (req, res) {
     }
   );
 }
+
+module.exports.editDiscussionPage = function (req, res) {
+  var requestOptions = {
+    url: apiOptions.server + "/api/user/queries/" + req.params.discussionId,
+    method: "GET",
+    json: {}
+  }
+  request(
+    requestOptions,
+    function (err, response, body) {
+      if (!err && response.statusCode === 201) {
+        res.render("editDiscussion", {
+          title: "Edit Discussion",
+          discussions: body
+        });  
+      }
+    }
+  );
+}
+
 
 module.exports.viewDiss = function (req, res) {
   var ans;
