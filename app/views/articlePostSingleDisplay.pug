@@ -1,0 +1,43 @@
+extends articlePostViewLayout
+
+block content
+  .article-post
+    .post-img
+      img.card-img-top(src='/uploads/' + article.imageName, alt='')
+    .post-heading
+      h2= article.title
+    .post-content!= article.content
+  
+  .comments
+    .heading 
+      | Comments
+      span 
+        | (
+        |  #{article.comments.length}
+        | )
+    
+    
+    if !isSessionSet
+      .login-request
+        .login-request-message 
+          h5 Post a comment or post a query in Discussions
+        .login-actions
+          a.btn.btn-danger(href="/user/signup" style="text-decoration: none!important; color: white") Sign up now
+          a.btn.btn-danger(href="/user/signin" style="margin-left: 10px; text-decoration: none; color: white") Login now
+    else
+      .comment-section
+        form(id="comment-form" action="/article_post/post_comment/" + article._id)
+          textarea.form-control(rows="5" name="comment" required)
+          button.btn.btn-primary(type="submit" style="text-decoration: none; color: white; margin: 10px 0") Post Comment
+
+    #result-add-comment.posted-comments
+      each comment in article.comments
+        .posted-comment
+          .user-info
+            img(src="/images/userIcon.png")
+            .name-date
+              - var name = comment.creatorName.firstname + " " +comment.creatorName.lastname
+              a(href='' + comment.creatorName._id)
+                h6= name
+              p= moment(comment.createdOn).format('MMM DD, YYYY')
+          p.comment-body= comment.body

@@ -4,7 +4,7 @@ html(lang='en')
   head
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
-    title Radon
+    title= title
 
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
@@ -29,6 +29,9 @@ html(lang='en')
             if isSessionSet
               li.nav-item
                 a.nav-link(href='/user/logout') Logout
+            else 
+              li.nav-item
+                a.nav-link(href='/user/signin') Sign in
     #myOverlay.overlay
       span.closebtn(onclick='closeSearch()', title='Close Overlay') ×
       .overlay-content
@@ -41,6 +44,7 @@ html(lang='en')
     
     script(type="text/javascript" src="/javascripts/jquery.js")
     script(type="text/javascript" src="/javascripts/user.js")
+    script(type="text/javascript" src="/javascripts/articlePost.js")
     script(type="text/javascript" src="/bootstrap/js/bootstrap.js")
     script.
       function openSearch() {
