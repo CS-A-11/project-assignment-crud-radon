@@ -64,7 +64,15 @@ module.exports.acountSignIn = function (req, res) {
       }
       if (response.statusCode === 201 && body.user.length !== 0) {
         req.session.user = body.user[0];
-        res.redirect("/");
+        res.status(201);
+        res.send({
+          message: 'User found'
+        });
+      } else {
+        res.status(404);
+        res.send({
+          message: 'User not found'
+        });
       }
     }
   );

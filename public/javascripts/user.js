@@ -1,4 +1,25 @@
 $(document).ready(function () {
+  $('#signin-form').submit(function (e) {
+    var form = $(this);
+    var url = form.attr('action');
+
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: form.serialize(),
+      dataType: 'json',
+      success: function(data)
+      {
+        window.location.replace("/");
+      },
+      error: function (xhr, status) {
+        var response = '<p class="alert alert-danger" style="margin-top: 10px;">' + xhr.responseJSON.message + '</p>';
+        $('#response').empty();
+        $('#response').append(response);
+      }
+    });
+    e.preventDefault();
+  });
   $('#searchText').keypress(function (e) {
     var c = String.fromCharCode(e.which);
     var textValue = $(this).val() + c;

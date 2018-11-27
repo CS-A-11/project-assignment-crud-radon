@@ -44,7 +44,7 @@ module.exports.editArticle = function (req, res) {
     };
   }
   var requestOptions = {
-    url: apiOptions.server + "/api/admin/update_post/" + req.params.postId,
+    url: req.protocol + '://' + req.get('host') + "/api/admin/update_post/" + req.params.postId,
     method: "PUT",
     json: urlParams
   };
@@ -62,7 +62,7 @@ module.exports.editArticle = function (req, res) {
 }
 module.exports.editPostPage = function (req, res) {
   var requestOptions = {
-    url: apiOptions.server + "/api/admin/get_post_by_id/" + req.params.post_id,
+    url: req.protocol + '://' + req.get('host') + "/api/admin/get_post_by_id/" + req.params.post_id,
     method: "GET",
     json: {}
   }
@@ -84,7 +84,7 @@ module.exports.viewPosts = function (req, res) {
     res.redirect("/admin");
   } else {
     var requestOptions = {
-      url: apiOptions.server + "/api/admin/get_posts",
+      url: req.protocol + '://' + req.get('host') + "/api/admin/get_posts",
       method: "GET",
       json: {},
     };
@@ -119,7 +119,7 @@ module.exports.addArticle = function (req, res) {
       imageName: req.file.filename
     };
     var requestOptions = {
-      url: apiOptions.server + "/api/admin/add_article_to_radon",
+      url: req.protocol + '://' + req.get('host') + "/api/admin/add_article_to_radon",
       method: "POST",
       json: urlParams
     };

@@ -39,7 +39,8 @@ html
             .logo-container
               .logo 
                 h6 Radon
-            form(method='POST' action='/user/acount_signin' class='form')
+            #response
+            form(action='/user/acount_signin' class='form' id='signin-form')
               div.form-group
                 //- label(for='name') Name:
                 input#name.form-control(type='text' placeholder='Username' name='name' require)
@@ -55,5 +56,6 @@ html
       .container
         p.m-0.text-center.text-white Copyright © Radon 2018    
 
-
+    script(type="text/javascript" src="/javascripts/jquery.js")
+    script(type="text/javascript" src="/javascripts/user.js")
     script(src='/bootstrap/js/bootstrap.min.js')
