@@ -1,4 +1,37 @@
 $(document).ready(function () {
+  $('#signup-form').submit(function (e) {
+    e.preventDefault();
+
+    var form = $(this);
+    var url = form.attr('action');
+    $.ajax({
+      type: "POST",
+      url: "/api/user/check_user",
+      data: form.serialize(),
+      dataType: 'json',
+      success: function(data)
+      {
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: form.serialize(),
+          dataType: 'json',
+          success: function (data) {
+            window.location.replace("/");
+          },
+          error: function (xhr, status) {
+            console.log(xhr);
+          }
+        });
+      },
+      error: function (xhr, status) {
+        console.log(xhr);
+        var response = '<p class="alert alert-danger" style="margin-top: 10px;">' + xhr.responseJSON.status + '</p>';
+        $('#response').empty();
+        $('#response').append(response);
+      }
+    });
+  });
   $('#signin-form').submit(function (e) {
     var form = $(this);
     var url = form.attr('action');

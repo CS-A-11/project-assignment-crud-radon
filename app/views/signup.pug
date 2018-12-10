@@ -23,28 +23,33 @@ html
 
     .card-container
       h4 Sign up to Radon
-      form(method='POST' action='/user/acount_signup' class='form')
+      #response
+      form(method='POST' action='/user/acount_signup' class='form' id='signup-form')
         div.form-group
           //- label(for='name') Name:
-          input#name.form-control(type='text' placeholder='First name' name='fname' require)
+          input#fname.form-control(type='text' placeholder='First name' name='fname' required)
         div.form-group
           //- label(for='name') Name:
-          input#name.form-control(type='text' placeholder='Last name' name='lname' require)
+          input#lname.form-control(type='text' placeholder='Last name' name='lname' required)
         div.form-group
           //- label(for='name') Name:
-          input#name.form-control(type='text' placeholder='Username' name='name' require)
+          input#uname.form-control(type='text' placeholder='Username' name='name' required)
         div.form-group
           //- label(for='pw') Password:
-          input#pw.form-control(type='password' name='password' placeholder='Password' require)
+          input#pw.form-control(type='password' name='password' placeholder='Password' required)
         div.form-group
           //- label(for='pw') Password:
-          input#pw.form-control(type='email' name='email' placeholder='Email' require)
+          input#email.form-control(type='email' name='email' placeholder='Email' required)
         div.form-group
           //- label(for='pw') Password:
-          input#pw.form-control(type="date" name="dob")
+          input#date.form-control(type="date" name="dob")
         .row
           button.btn.btn-primary(type='submit') Sign up
-
+  
+  
+  script(type="text/javascript" src="/javascripts/jquery.js")
+  script(type="text/javascript" src="/javascripts/user.js")
+  script(src='/bootstrap/js/bootstrap.min.js')
   footer.py-2.bg-dark.fixed-bottom
     .container
       p.m-0.text-center.text-white Copyright © Radon 2018             

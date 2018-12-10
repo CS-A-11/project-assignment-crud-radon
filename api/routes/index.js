@@ -18,5 +18,7 @@ router.get('/admin/get_all_discussions', adminController.getAllDiscussions);
 
 router.post('/admin/admin_signin', adminController.signinAdmin);
 
+router.post('/user/check_user', userController.checkUser);
+
 
 module.exports = router;

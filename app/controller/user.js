@@ -52,7 +52,7 @@ module.exports.acountSignIn = function (req, res) {
     password: req.body.password
   };
   var requestOptions = {
-    url: apiOptions.server + "/api/user/sigin",
+    url: req.protocol + '://' + req.get('host') + "/api/user/sigin",
     method: "POST",
     json: urlParams
   };
@@ -92,7 +92,7 @@ module.exports.acountSignUp = function (req, res) {
     dateOfBirth: req.body.dob
   };
   var requestOptions = {
-    url: apiOptions.server + "/api/user/signup",
+    url: req.protocol + '://' + req.get('host') + "/api/user/signup",
     method: "POST",
     json: urlParams
   };
@@ -103,8 +103,9 @@ module.exports.acountSignUp = function (req, res) {
         console.log(err) // Print the google web page.
       }
       if (response.statusCode === 201) {
-        console.log(response.body.user);
-        res.redirect("/");
+        req.session.user = body.user;
+        console.log(req.session.user);
+        res.json({ user: body.user[0] });
       }
     }
   );

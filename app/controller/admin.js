@@ -225,6 +225,10 @@ module.exports.adminlandingPage = function (req, res) {
     res.render("adminLogin", {
       title: "Admin"
     });
+  } else if (!req.session.user.admin) {
+    res.render("adminLogin", {
+      title: "Admin"
+    });
   }
   else {
     var requestOptions = {
