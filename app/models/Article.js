@@ -12,7 +12,8 @@ var articleSchema = new mongoose.Schema({
 	content: String,
 	createdOn: {type: Date, default: Date.now},
 	imageName: String,
-	comments: [commentSchema]
+	comments: [commentSchema],
+	fileName: String
 });
 
 mongoose.model('Article', articleSchema);

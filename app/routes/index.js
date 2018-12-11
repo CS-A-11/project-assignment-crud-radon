@@ -7,7 +7,13 @@ const storage = multer.diskStorage({
     cb(null, 'public/uploads')
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    cb(null, "article" + '-' + Date.now() + path.extname(file.originalname));
+  },
+  fileFilter: function (req, file, cb) {
+    if (path.extension(file.originalname) !== '.pdf') {
+      return cb(new Error('Only pdfs are allowed'), false);
+    }
+    return cb(null, true);
   }
 });
 var upload = multer({ storage: storage });

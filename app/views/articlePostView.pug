@@ -10,5 +10,7 @@ block content
           .card-body
             h5.card-title
               a(href="/article_post/" + article._id style="text-decoration: none")= article.title
+            h6
+              a(href="/uploads/" + article.fileName)= article.fileName
             .card-text(style="font-size: 0.9em; height: 125px; overflow: hidden;")!= article.content
             a.btn.btn-outline-secondary(href="/article_post/" + article._id style="margin-top: 10px;") More
