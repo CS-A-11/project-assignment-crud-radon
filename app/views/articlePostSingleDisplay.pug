@@ -6,6 +6,8 @@ block content
       img.card-img-top(src='/uploads/' + article.imageName, alt='')
     .post-heading
       h2= article.title
+    h6
+      a(href="/uploads/" + article.fileName style="margin-left: 20px")= article.fileName
     .post-content!= article.content
   
   .comments

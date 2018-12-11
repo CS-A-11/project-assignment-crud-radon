@@ -9,11 +9,8 @@ require("./app/models/db");
 var apiIndexRoute = require("./api/routes/index");
 var discussionsApi = require("./api/routes/discussion");
 var indexRouter = require("./app/routes/index");
-var profile = require("./app/routes/profile");
-var post = require("./app/routes/post");
 var discussions = require("./app/routes/discussions");
 var userRoutes = require("./app/routes/users");
-var homeRoutes = require("./app/routes/home");
 var articlePostApi = require("./api/routes/articlePost");
 var articlePost = require("./app/routes/articlePost");
 
@@ -33,12 +30,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api", [apiIndexRoute, discussionsApi]);
 app.use("/api", articlePostApi);
+app.use("/", articlePost);
 app.use("/", indexRouter);
 app.use("/", userRoutes);
-app.use("/", homeRoutes);
-app.use("/", articlePost);
-app.use(profile);
-app.use("/post/:title", post);
 app.use("/", discussions);
 
 const PORT = process.env.PORT || 5000;

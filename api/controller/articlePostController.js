@@ -33,7 +33,8 @@ module.exports.getArticle = function (req, res) {
     createdOn: 1,
     content: 1,
     imageName: 1,
-    comments: 1
+    comments: 1,
+    fileName: 1
   },
   function (err, articles) {
     if (!err) {
@@ -70,7 +71,8 @@ module.exports.getAllArticlPosts = function (req, res) {
     title: 1,
     createdOn: 1,
     content: 1,
-    imageName: 1
+    imageName: 1,
+    fileName: 1,
   }, function (err, article) {
     if (!err) {
       sendPostResponse(res, 201, article);

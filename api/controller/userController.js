@@ -42,3 +42,21 @@ module.exports.signinUser = function (req, res) {
     sendSigninResponse(res, 201, { status: "success", user });
   });
 };
+module.exports.checkUser = function (req, res) {
+  users.find( { 
+    $or:[
+      {'username': req.body.name}, 
+      {'email': req.body.email} 
+    ]}, 
+    function(err,user){
+      if (err) {
+        sendSigninResponse(res, 400, err);
+      } else {
+        if (user.length === 1)
+          sendSigninResponse(res, 400, { status: "email or username already exits" });
+        else {
+          sendSigninResponse(res, 201, { status: "user not found", user });
+        }
+      }
+  });
+}

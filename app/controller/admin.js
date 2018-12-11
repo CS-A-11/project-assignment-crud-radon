@@ -40,7 +40,7 @@ module.exports.editArticle = function (req, res) {
       title: req.body.heading,
       content: req.body.content,
       createdOn: Date.now,
-      imageName: req.file.filename
+      fileName: req.file.filename
     };
   }
   var requestOptions = {
@@ -116,7 +116,8 @@ module.exports.addArticle = function (req, res) {
       title: req.body.heading,
       content: req.body.content,
       createdOn: Date.now('dd-mm-yyyy'),
-      imageName: req.file.filename
+      imageName: "b",
+      fileName: req.file.filename,
     };
     var requestOptions = {
       url: req.protocol + '://' + req.get('host') + "/api/admin/add_article_to_radon",
@@ -222,6 +223,10 @@ module.exports.acountSignOut = function (req, res) {
 }
 module.exports.adminlandingPage = function (req, res) {
   if (!req.session.user || req.session.user === false) {
+    res.render("adminLogin", {
+      title: "Admin"
+    });
+  } else if (!req.session.user.admin) {
     res.render("adminLogin", {
       title: "Admin"
     });
