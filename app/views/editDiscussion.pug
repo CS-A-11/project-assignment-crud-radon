@@ -38,7 +38,7 @@ html(lang="en")
     .content-container
       
       //- if discussionId === undefined
-      - var address = '/discussions/create_discussion'
+      - var address = '/edit_query/'
       - var buttonTextDone = 'Edit'
       - var buttonTextCancel = 'Cancel'
       - var formMethod = 'POST'
@@ -53,7 +53,7 @@ html(lang="en")
         string Note!
         span= message
     
-    form(method=formMethod action=address class='form' enctype="multipart/form-data")
+    form(method=formMethod action=address + discussions._id class='form' enctype="multipart/form-data")
       div.form-group
         input#name.form-control(type='text' placeholder='Discussion Title' name='heading' value=discussions.title required)
       input(type='file' name='discussionImage')

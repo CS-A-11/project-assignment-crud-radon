@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var UserSchema = require('./User');
 
 var commentSchema = new mongoose.Schema({
-	body: String,
+	comment_text: String,
 	createdOn: {type:Date, default:Date.now},
 	creatorName: UserSchema.schema
 });

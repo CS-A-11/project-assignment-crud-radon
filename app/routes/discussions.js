@@ -20,11 +20,12 @@ var ctrlDiscussion = require("../controller/discussions");
 router.get('/discussions/add_discussion', ctrlDiscussion.addDiscussion);
 router.post("/discussions/create_discussion", upload.single('discussionImage'), ctrlDiscussion.createDiscussion);
 //router.get('/queries/:query', ctrlDiscussion.query);
+router.post('/queries/post_comment/:discussionId', ctrlDiscussion.createComment);
 
 // R
 router.get('/discussions', ctrlDiscussion.viewDiss);
 router.get('/queries/:discussionId', ctrlDiscussion.query2);
-router.post('/queries/:discussionId', ctrlDiscussion.createComment);
+// router.post('/queries/:discussionId', ctrlDiscussion.createComment);
 // router.get('/queries/:discussionId/comments/:commentId', ctrlDiscussion.createComment);
 
 // U

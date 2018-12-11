@@ -82,24 +82,18 @@ module.exports.discussionsCreate = function(req, res){
   }
   
   module.exports.discussionsDeleteOne = function(req, res){
-    var disc_ID = req.params.discussionId;
-    if (disc_ID){
-      discussion
-        .findByIdAndRemove(disc_ID)
-        .exec(
-            function(err, disc){
-              if (err){
-                sendPostResponse(res, 404, err);
-                return;
-              }
-              sendPostResponse(res, 201, null);
-            }
-        );
-    } else {
-      sendPostResponse(res, 404, {
-        "message": "No discussionID"
-      });
-    }
+    discussion.findOneAndDelete(
+      { _id: req.body.discussionId },
+      function (err, disc) {
+        if (err) {
+          console.log('error' + err);
+          sendPostResponse(res, 400, err);
+        } else {
+          console.log(disc);
+          sendPostResponse(res, 201, disc);
+        }
+      }
+    );
   };
   
   module.exports.commentsCreate = function (req, res){
@@ -124,7 +118,7 @@ module.exports.discussionsCreate = function(req, res){
       sendPostResponse(res, 404, {"message": "discussionID not found"});
     } else {
       disc.comments.push({
-        body: req.body.body,
+        comment_text: req.body.comment_text,
         createdOn: req.body.createdOn,
         creatorName:req.body.creatorName
       });

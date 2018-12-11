@@ -11,7 +11,7 @@ module.exports.editDiscussion = function (req, res) {
     var urlParams = {
       title: req.body.heading,
       content: req.body.content,
-      createdOn: Date.now,
+      createdOn:Date.now,
       // imageName: req.body.file.filename,
       // creatorName: req.session.user
     };
@@ -25,7 +25,7 @@ module.exports.editDiscussion = function (req, res) {
     };
   }
   var requestOptions = {
-    url: apiOptions.server + "/api/user/update_discussion/" + req.params.discussionId,
+    url: req.protocol + "://" + req.get("host") + "/api/user/update_discussion/" + req.params.discussionId,
     method: "PUT",
     json: urlParams
   };
@@ -44,7 +44,7 @@ module.exports.editDiscussion = function (req, res) {
 
 module.exports.editDiscussionPage = function (req, res) {
   var requestOptions = {
-    url: apiOptions.server + "/api/user/queries/" + req.params.discussionId,
+    url: req.protocol + "://" + req.get("host") + "/api/user/queries/" + req.params.discussionId,
     method: "GET",
     json: {}
   }
@@ -88,7 +88,7 @@ module.exports.viewDiss = function (req, res) {
 
 module.exports.deleteDiscussion = function (req, res) {
   var urlParams = {
-    postId: req.params.discussionId
+    discussionId: req.params.discussionId
   };
   var requestOptions = {
     url: req.protocol + '://' + req.get('host') + '/api/user/delete_discussion',
@@ -109,10 +109,19 @@ module.exports.deleteDiscussion = function (req, res) {
 }
 
 module.exports.createComment =function (req, res) {
-  if (req.body.commentBox === undefined) {}
+  if (req.body.commentBox === undefined) {
+    res.render("query", {
+      title:"Discussion Details",
+      comments: {
+        _id:'',
+        comment_text:''
+        }      
+    
+      });  
+  }
   else {
     var urlParams = {
-      body: req.body.commentBox,
+      comment_text: req.body.commentBox,
       createdOn: Date.now,
       creatorName: req.session.user
     };
@@ -134,6 +143,79 @@ module.exports.createComment =function (req, res) {
       })
 
   }
+}
+
+module.exports.query2 = function (req, res) {
+  var ans;
+  if (!req.session.user)
+    ans=false;
+  else 
+    ans=true ;
+  
+  // var urlParams = {
+  //   discussionId: req.params.discussionId
+  // };
+  var requestOptions = {
+    url: apiOptions.server + "/api/user/queries/" + req.params.discussionId,
+    method: "GET",
+    json: {}
+  }
+  request(
+    requestOptions, 
+    function(err, response, body) {
+      if (!err && response.statusCode === 201) {
+        res.render('query', {
+          title: "Discussion Details",
+          isSessionSet:ans,
+          discussion: body,
+          // // : req.params.discussionId,
+          // //discussionId: req.params.discussion_id,
+          // // queryTopic: req.params.title, 
+          // queryDetails: 'ksncl3n34',
+          // //discussion: body
+          //  queryTopic: 'sd;vhfbivjokqewkvdn scijm', 
+          // // queryTopic: response.title,
+          // // queryDetails: content,
+          // // date: response.createdOn,
+          // date: '1234',
+          tags: [
+            { id: 11, name: 'webApp' },
+            { id: 22, name: 'mobile_development' },
+            { id: 23, name: 'meanstack'}
+          ],
+          user: {
+            userId: 11,
+            userName: response.creatorName,
+            // userName: "Fauz Ahmad"
+            img: '/images/userIcon.png'
+          },
+          comments: [
+            {
+              user: {
+                userId: 10,
+                userName: "Waneed",
+                img: '/images/userIcon.png'
+              },
+              comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+              date: 'Monday, August 20, 2018',
+            }
+          ]
+          // comments: [
+          //   {
+          //     user: {
+          //       userId: 10,
+          //       // userName: response.comments.creatorName
+          //       userName:"Fauz Ahmad"
+          //     },
+          //     comment_text: response.comments.comment_text,
+          //     date: response.comments.createdOn
+          //   }
+          // ]
+        });
+        // res.redirect("");
+      }
+    }
+  )
 }
 
 module.exports.createDiscussion = function (req,res){
@@ -277,69 +359,6 @@ module.exports.query3 = function (req, res) {
 }
 
 
-module.exports.query2 = function (req, res) {
-  var ans;
-  if (!req.session.user)
-    ans=false;
-  else 
-    ans=true ;
-  
-  // var urlParams = {
-  //   discussionId: req.params.discussionId
-  // };
-  var requestOptions = {
-    // url: apiOptions.server + "/api/user/discussions/" + req.params.discussionid,
-    // url: apiOptions.server + "/api/user/discussions/view",
-    // url: req.protocol + "://" + req.get('host') + "/api/query",
-    url: apiOptions.server + "/api/user/queries/" + req.params.discussionId,
-    method: "GET",
-    json: {}
-  }
-  request(
-    requestOptions, 
-    function(err, response, body) {
-      if (!err && response.statusCode === 201) {
-        res.render('query', {
-          title: "Discussion Details",
-          isSessionSet:ans,
-          discussion: body,
-          // // : req.params.discussionId,
-          // //discussionId: req.params.discussion_id,
-          // // queryTopic: req.params.title, 
-          // queryDetails: 'ksncl3n34',
-          // //discussion: body
-          //  queryTopic: 'sd;vhfbivjokqewkvdn scijm', 
-          // // queryTopic: response.title,
-          // // queryDetails: content,
-          // // date: response.createdOn,
-          // date: '1234',
-          tags: [
-            { id: 11, name: 'react_native' },
-            { id: 22, name: 'mobile_development' }
-          ],
-          user: {
-            userId: 11,
-            // userName: response.creatorName,
-            userName: "Fauz Ahmad"
-            // img: '/images/userIcon.png'
-          },
-          comments: [
-            {
-              user: {
-                userId: 10,
-                userName: "Waneed",
-                // img: '/images/userIcon.png'
-              },
-              comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
-              date: 'Monday, August 20, 2018',
-            }
-          ]
-        });
-        // res.redirect("");
-      }
-    }
-  )
-}
 
 module.exports.query = function (req, res) {
   res.render('query', {

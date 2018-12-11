@@ -1,12 +1,28 @@
 doctype html
 html
+  style.
+    div.background {
+    background: url(klematis.jpg) repeat;
+    border: 2px;
+    }
+    div.transbox {
+    margin: 15px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 1;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
+    }
+    div.transbox p {
+    margin: 3%;
+    font-weight: bold;
+    color:   #AARRGGBB;
+    }
   head
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title= title
     link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/querypage.css')
-        
-
+    
   body
     //Navigation Bar
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
@@ -28,24 +44,26 @@ html
         //-     li.nav-item
         //-       a.nav-link(href='/discussions') Discussions
     // Navigation Bar ends here
-
+    
+    
     block content
       br
       br
       br
       .query
         .query-details
-          //- a(href="/view_query/" + discussion._id)
-          //- h1= queryTopic
-          //- p= queryDetails
-          h1(style="color:#008CBA ;")= discussion.title
+          h1(style="color:#008CBA ; text-align:center;")= discussion.title
           br
-          p!= discussion.content  
+          - var dtext = discussion.content
+          .background
+            .transbox
+              p(style="text-align:justify;")!=discussion.content 
           .tags
             each tag in tags
               span(style="color:blue;")= "#" + tag.name
               span &nbsp
-          span(style="color:DarkSlateGrey;")= "Date: " +  discussion.createdOn
+          span(style="color:DarkSlateGrey; text-align:center;")= "Date: " +  discussion.createdOn
+          //- p= moment(discussion.createdOn).format('MMM DD, YYYY')
           //- .query-date= discussion.createdOn
         br   
         .user-details
@@ -53,10 +71,11 @@ html
           img(src='/images/userIcon.png', alt="")
           h6(style="color:green;")= discussion.creatorName.firstname +' '+discussion.creatorName.lastname
         br 
-        .btn-group.btn-group-sm
-          a.btn.btn-info(type='button' href="/edit_discussion/" + discussion._id, style="text-decoration:none;") Edit
-          //- span &nbsp &nbsp
-          a.btn.btn-danger(type='button' href="/delete_discussion/" + discussion._id, style="text-decoration:none;") Delete
+        .btn-group.btn-group-md
+          if isSessionSet == true
+            a.btn.btn-info(type='button' href="/edit_discussion/" + discussion._id, style="text-decoration:none;") Edit
+            span &nbsp &nbsp
+            a.btn.btn-danger(type='button' href="/delete_discussion/" + discussion._id, style="text-decoration:none;") Delete
       hr
       h5 Comments
       //- br
@@ -72,21 +91,25 @@ html
               h6(style="color:green;")= comment.user.userName
             .query-details
               p= comment.comment
-              .query-date= date
+              .query-date= comment.date
         
         // new comment
         br
-        .form-group
-          label(for='comment') Have your say:
-          textarea#comment.form-control(name="commentBox" rows='3')
-          button.btn.btn-primary.btn-sm(type='submit') Post
-          //- span &nbsp &nbsp
-          //- button.btn.btn-dark(onclick='clear()' _id='cButton') Cancel  
-          //- script.
-          //-   function clear() {
-          //-     document.getElementById('cButton').value ='';
-          //-   }
+        form(method="POST" action='/queries/post_comment/' + discussion._id class='form' enctype="multipart/form-data")  
+          .form-group
+            label(for='comment' style="font-weight:bold") Have your say:
+            textarea#comment.form-control(name="commentBox" rows='3')=discussion.comments
+            button.btn.btn-primary(type="submit" style="text-decoration: none; color: white; margin: 10px 0") Post Comment
+            //- button.btn.btn-primary.btn-md(type='submit' ) Post Comment
+            //- span &nbsp &nbsp
+            //- button.btn.btn-dark(onclick='clear()' _id='cButton') Cancel  
+            //- script.
+            //-   function clear() {
+            //-     document.getElementById('cButton').value ='';
+            //-   }
         br 
         br
-
+    footer.bottom-footer.py-2.bg-dark
+      .container
+        p.m-0.text-center.text-white Copyright © Radon 2018
                         
